@@ -1,0 +1,13 @@
+task_id: ""
+objective: ""
+context: ""
+constraints: []
+inputs: []
+expected_output: ""
+acceptance_criteria: []
+allowed_tools: []
+forbidden_actions:
+  - "ler ou exibir .env"
+  - "chamar a API real da TypeSafe sem autorização"
+  - "push, merge ou tag"
+references: []

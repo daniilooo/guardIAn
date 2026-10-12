@@ -1,0 +1,11 @@
+task_id: ""
+status: "" # concluido | parcial | bloqueado | falhou
+summary: ""
+findings: []
+decisions: []
+changes: []
+risks: []
+tests: ""
+artifacts: []
+recommendations: []
+needs_human_decision: []

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>guardIAn — Roadmap do MVP</title>
+<style>
+:root{
+  --bg:#f6f7f9;--surface:#fff;--surface-2:#eef0f4;--text:#16181d;--muted:#5b6170;--border:#dde1e8;
+  --accent:#3b5bdb;--ok:#2b8a3e;--ok-bg:#e6f4ea;--prog:#1c64c8;--prog-bg:#e3eefc;--block:#c92a2a;--block-bg:#fdecec;
+  --val:#a15c00;--val-bg:#fff3dc;--todo:#6b7280;--todo-bg:#eef0f4;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1115;--surface:#171a21;--surface-2:#1f232c;--text:#e7e9ee;--muted:#9aa1b0;--border:#2a2f3a;
+  --accent:#7b93ff;--ok:#57c46e;--ok-bg:#16301d;--prog:#6aa5ff;--prog-bg:#152640;--block:#ff6b6b;--block-bg:#3a1717;
+  --val:#f0b44c;--val-bg:#3a2a10;--todo:#9aa1b0;--todo-bg:#232833;}}
+:root[data-theme="dark"]{
+  --bg:#0f1115;--surface:#171a21;--surface-2:#1f232c;--text:#e7e9ee;--muted:#9aa1b0;--border:#2a2f3a;
+  --accent:#7b93ff;--ok:#57c46e;--ok-bg:#16301d;--prog:#6aa5ff;--prog-bg:#152640;--block:#ff6b6b;--block-bg:#3a1717;
+  --val:#f0b44c;--val-bg:#3a2a10;--todo:#9aa1b0;--todo-bg:#232833;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+h1{margin:0;font-size:1.6rem}
+.sub{color:var(--muted);margin:4px 0 0}
+button.theme{background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.kpi .v{font-size:1.5rem;font-weight:700}
+.kpi .l{color:var(--muted);font-size:.85rem}
+.bar{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.timeline{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;margin-bottom:12px}
+.step{flex:1 0 92px;text-align:center;font-size:.78rem;color:var(--muted);cursor:pointer;border:none;background:none;padding:0}
+.step .dot{width:30px;height:30px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-weight:700;color:#fff}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filters button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:99px;padding:5px 12px;cursor:pointer;font-size:.85rem}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.phase{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.phase summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.phase summary::-webkit-details-marker{display:none}
+.num{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:700;background:var(--surface-2)}
+.title{font-weight:600}
+.title small{display:block;color:var(--muted);font-weight:400}
+.pill{font-size:.75rem;font-weight:600;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.s-done{color:var(--ok);background:var(--ok-bg)}.s-prog{color:var(--prog);background:var(--prog-bg)}
+.s-block{color:var(--block);background:var(--block-bg)}.s-val{color:var(--val);background:var(--val-bg)}.s-todo{color:var(--todo);background:var(--todo-bg)}
+.d-done{background:var(--ok)}.d-prog{background:var(--prog)}.d-block{background:var(--block)}.d-val{background:var(--val)}.d-todo{background:var(--todo)}
+.body{padding:0 16px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;border-top:1px solid var(--border);padding-top:14px}
+.body h4{margin:0 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.body ul{margin:0;padding-left:18px}
+.check{list-style:none;padding:0!important}
+.check li{display:flex;gap:8px;align-items:flex-start;margin-bottom:4px}
+.check input{margin-top:4px}
+.blocker{color:var(--block)}
+.prog-row{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}
+.prog-row .bar{flex:1}
+footer{color:var(--muted);font-size:.8rem;margin-top:24px}
+code{background:var(--surface-2);padding:1px 5px;border-radius:5px;font-size:.85em}
+@media (max-width:560px){.phase summary{grid-template-columns:auto 1fr}.phase summary .pill{grid-column:2;justify-self:start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>🛡️ guardIAn — Roadmap do MVP</h1>
+      <p class="sub">Fonte da verdade: <code>vault/11_ROADMAP/DEVELOPMENT_PLAN.md</code> · atualizado em <span id="upd"></span></p>
+    </div>
+    <button class="theme" id="theme" type="button">Alternar tema</button>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+  <nav class="timeline" id="timeline" aria-label="Linha do tempo das fases"></nav>
+  <div class="filters" id="filters" role="group" aria-label="Filtrar por status"></div>
+  <main id="phases"></main>
+
+  <footer>
+    Status: Não iniciado · Em andamento · Bloqueado · Em validação · Concluído. Os checkboxes desta página servem para acompanhamento rápido na daily e ficam salvos só no seu navegador. O registro oficial é o arquivo do vault: edite o array <code>PHASES</code> neste HTML sempre que o <code>DEVELOPMENT_PLAN.md</code> mudar.
+  </footer>
+</div>
+
+<script>
+const UPDATED = "2026-10-12";
+// status: todo | prog | block | val | done
+const PHASES = [
+  {n:0,name:"Intake",status:"done",version:"—",goal:"Transformar a ideia em definição de MVP.",
+    deliverables:["Respostas dos 6 blocos de intake","Regras R1–R17 e invariantes","Definition of MVP Done"],
+    checklist:[["Intake de produto",1],["Regras de negócio e MVP",1],["Stack e arquitetura",1],["GitFlow e gates",1],["LLMs, MCPs e hooks",1],["Infra e homologação",1]],
+    deps:[],blockers:[]},
+  {n:1,name:"Bootstrap AI-Native",status:"done",version:"—",goal:"Base de desenvolvimento multi-LLM rastreável.",
+    deliverables:["Vault Obsidian","Sistema .ai/ (workflow, agentes, contratos, skills)","Adapters Claude/Codex/local","HTMLs, manual, README","git local main + develop"],
+    checklist:[["Vault criado",1],[".ai/ criado",1],["Adapters e wrappers .claude/",1],["Roadmap + HTMLs",1],["Commit inicial local",1]],
+    deps:["Fase 0"],blockers:[]},
+  {n:2,name:"Spike do portão",status:"todo",version:"v0.2.0",goal:"Provar no Claude Code real que a interceptação suporta R1, R5, R14 e R17.",
+    deliverables:["Hook + servidor mínimos em scripts/spike/","Conclusões em CLAUDE_CODE_HOOKS e TYPESAFE_JEV","ADR-0005 confirmado ou revisado"],
+    checklist:[["Hook bloqueia e mostra motivo",0],["Segura 60s e libera por sinal externo",0],["Expiração descarta",0],["/guardian-* dispara o hook?",0],["Nome final dos comandos",0],["Fail-open com servidor offline",0],["Latência real do JEV (G10)",0]],
+    deps:["Fase 1","Chave TypeSafe no .env"],blockers:[]},
+  {n:3,name:"Fundação técnica",status:"todo",version:"v0.3.0",goal:"Monorepo executável com qualidade automatizada.",
+    deliverables:["pnpm workspaces, tsconfig, ESLint, Prettier, Vitest","packages/shared (tipos e constantes)","lefthook","GitHub Actions"],
+    checklist:[["lint/typecheck/test/build verdes",0],["packages/shared com constantes 5/50/75/60",0],["lefthook instalado",0],["CI verde num PR",0]],
+    deps:["Fase 2"],blockers:[]},
+  {n:4,name:"Núcleo de avaliação",status:"todo",version:"v0.4.0",goal:"Domínio puro de decisão + adapter JEV.",
+    deliverables:["Isenção, palavras, segredos/mascaramento, nota, faixas","AvaliadorJev + AvaliadorFake","Rubrica calibrada"],
+    checklist:[["Casos de limite testados",0],["Segredos: testes positivos/negativos",0],["AvaliadorJev com 4 Scores",0],["Calibração com exemplos-alvo",0]],
+    deps:["Fase 3"],blockers:[]},
+  {n:5,name:"Servidor e persistência",status:"todo",version:"v0.5.0",goal:"API local completa.",
+    deliverables:["Fastify em 127.0.0.1","SQLite + Drizzle","Retenção 60s + override","SSE + health"],
+    checklist:[["Rotas com testes de integração",0],["Expiração/override/cancelar/409/403",0],["Nada sem máscara em DB/log/SSE",0],["Contrato congelado",0]],
+    deps:["Fase 4"],blockers:[]},
+  {n:6,name:"Plugin Claude Code",status:"todo",version:"v0.6.0",goal:"Interceptação real e instalável.",
+    deliverables:["plugin.json, hooks.json (75s), hook.mjs","/guardian-active e /guardian-inactive","marketplace.json"],
+    checklist:[["Instalação via marketplace",0],["allow/block/hold/fail-open testados",0],["Ativar/desativar projeto",0]],
+    deps:["Fase 5"],blockers:[]},
+  {n:7,name:"UI",status:"todo",version:"v0.7.0",goal:"Observabilidade e override.",
+    deliverables:["Abas + Playground","Colunas Todos × Liberados","Cards com marcador e 4 barras","Modal de override + banner JEV"],
+    checklist:[["Marcadores com cor + texto",0],["Override com contador de 60s",0],["Playground nunca libera",0],["Jornadas J1–J6",0]],
+    deps:["Fase 5 (paralela à 6)"],blockers:[]},
+  {n:8,name:"QA e Homologação",status:"todo",version:"v0.8.0",goal:"Validar contra a Definition of MVP Done.",
+    deliverables:["QA paralelo","Security review","Roteiro de homologação 15/15"],
+    checklist:[["QA regras/API/hook/UI/segurança",0],["Sem achados críticos",0],["Roteiro aprovado pelo engenheiro",0]],
+    deps:["Fases 6 e 7"],blockers:[]},
+  {n:9,name:"MVP Release",status:"todo",version:"v1.0.0",goal:"Publicar v1.0.0.",
+    deliverables:["CHANGELOG","README final","Tag v1.0.0 em main (humano)"],
+    checklist:[["Definition of MVP Done 100%",0],["Tag v1.0.0",0]],
+    deps:["Fase 8"],blockers:[]}
+];
+const LABEL={todo:"Não iniciado",prog:"Em andamento",block:"Bloqueado",val:"Em validação",done:"Concluído"};
+
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const local=store.get("gdn-plan-checks")||{};
+const isChecked=(p,i)=>{const k=p.n+":"+i;return k in local?local[k]:!!p.checklist[i][1]};
+const pct=p=>{const t=p.checklist.length;if(!t)return 0;let d=0;p.checklist.forEach((_,i)=>{if(isChecked(p,i))d++});return Math.round(d*100/t)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+let filter="all";
+
+function render(){
+  document.getElementById("upd").textContent=UPDATED;
+  const total=PHASES.length,done=PHASES.filter(p=>p.status==="done").length;
+  const overall=Math.round(PHASES.reduce((a,p)=>a+pct(p),0)/total);
+  const current=PHASES.find(p=>p.status!=="done");
+  const blocked=PHASES.filter(p=>p.status==="block"||p.blockers.length).length;
+  document.getElementById("kpis").innerHTML=`
+    <div class="kpi"><div class="v">${overall}%</div><div class="l">Progresso geral</div><div class="bar" style="margin-top:8px"><i style="width:${overall}%"></i></div></div>
+    <div class="kpi"><div class="v">${done}/${total}</div><div class="l">Fases concluídas</div></div>
+    <div class="kpi"><div class="v">Fase ${current?current.n:"—"}</div><div class="l">${current?esc(current.name):"MVP concluído"}</div></div>
+    <div class="kpi"><div class="v">${blocked}</div><div class="l">Fases com bloqueio</div></div>`;
+  document.getElementById("timeline").innerHTML=PHASES.map(p=>`
+    <button class="step" type="button" data-n="${p.n}" title="${esc(p.name)} — ${LABEL[p.status]}">
+      <div class="dot d-${p.status}">${p.n}</div>${esc(p.name)}</button>`).join("");
+  document.getElementById("filters").innerHTML=[["all","Todas"],...Object.entries(LABEL)].map(([k,l])=>
+    `<button type="button" data-f="${k}" aria-pressed="${filter===k}">${l}</button>`).join("");
+  document.getElementById("phases").innerHTML=PHASES.filter(p=>filter==="all"||p.status===filter).map(p=>{
+    const v=pct(p);
+    return `<details class="phase" id="f${p.n}" ${p.status!=="done"&&p===current?"open":""}>
+      <summary><div class="num">${p.n}</div>
+        <div class="title">${esc(p.name)}<small>${esc(p.goal)} · ${esc(p.version)}</small>
+          <div class="prog-row"><div class="bar"><i style="width:${v}%"></i></div>${v}%</div></div>
+        <span class="pill s-${p.status}">${LABEL[p.status]}</span></summary>
+      <div class="body">
+        <div><h4>Checklist</h4><ul class="check">${p.checklist.map((c,i)=>`<li><input type="checkbox" id="c${p.n}-${i}" data-k="${p.n}:${i}" ${isChecked(p,i)?"checked":""}><label for="c${p.n}-${i}">${esc(c[0])}</label></li>`).join("")}</ul></div>
+        <div><h4>Entregáveis</h4><ul>${p.deliverables.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>
+        <div><h4>Dependências</h4><ul>${p.deps.length?p.deps.map(d=>`<li>${esc(d)}</li>`).join(""):"<li>—</li>"}</ul>
+          <h4 style="margin-top:12px">Bloqueios</h4><ul>${p.blockers.length?p.blockers.map(b=>`<li class="blocker">${esc(b)}</li>`).join(""):"<li>Nenhum</li>"}</ul></div>
+      </div></details>`}).join("");
+}
+document.addEventListener("click",e=>{
+  const f=e.target.closest("[data-f]");if(f){filter=f.dataset.f;render();return}
+  const s=e.target.closest(".step");if(s){filter="all";render();const el=document.getElementById("f"+s.dataset.n);el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"})}
+});
+document.addEventListener("change",e=>{const k=e.target.dataset.k;if(!k)return;local[k]=e.target.checked;store.set("gdn-plan-checks",local);render()});
+document.getElementById("theme").addEventListener("click",()=>{
+  const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme=dark?"light":"dark";store.set("gdn-theme",r.dataset.theme)});
+const t=store.get("gdn-theme");if(t)document.documentElement.dataset.theme=t;
+render();
+</script>
+</body>
+</html>

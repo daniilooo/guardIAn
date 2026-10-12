@@ -1,0 +1,118 @@
+# Plano de desenvolvimento — guardIAn MVP
+
+> Toda fase tem início e fim claros. Melhoria não essencial → [[POST_MVP_BACKLOG]]. Visão HTML: `docs/development-plan.html` (atualizar junto).
+
+| Fase | Nome | Status | Versão |
+|---|---|---|---|
+| 0 | Intake | ✅ Concluído | — |
+| 1 | Bootstrap AI-Native | ✅ Concluído | — |
+| 2 | Spike do portão | ⬜ Não iniciado | v0.2.0 |
+| 3 | Fundação técnica | ⬜ Não iniciado | v0.3.0 |
+| 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
+| 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
+| 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
+| 7 | UI | ⬜ Não iniciado | v0.7.0 |
+| 8 | QA e Homologação | ⬜ Não iniciado | v0.8.0 |
+| 9 | MVP Release | ⬜ Não iniciado | **v1.0.0** |
+
+```mermaid
+flowchart LR
+  F0[0 Intake ✅] --> F1[1 Bootstrap ✅] --> F2[2 Spike] --> F3[3 Fundação] --> F4[4 Núcleo] --> F5[5 Servidor]
+  F5 --> F6[6 Plugin]
+  F5 --> F7[7 UI]
+  F6 --> F8[8 QA/Homologação]
+  F7 --> F8 --> F9[9 v1.0.0]
+```
+Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
+
+---
+
+## FASE 0 — Intake ✅
+- **Objetivo:** transformar a ideia em definição de MVP.
+- **Entregáveis:** respostas dos 6 blocos, regras R1–R17, Definition of MVP Done.
+- **DoD:** resumo aprovado pelo engenheiro (2026-10-12). ✔
+
+## FASE 1 — Bootstrap AI-Native ✅
+- **Objetivo:** base de desenvolvimento multi-LLM rastreável.
+- **Entregáveis:** vault, `.ai/`, adapters Claude/Codex/local, agentes, contratos, skills, especificação de hooks, GitFlow, roadmap, HTMLs, manual, README, git local (`main` + `develop`).
+- **DoD:** estrutura criada e commitada localmente; nenhum código de produto. ✔
+
+## FASE 2 — Spike do portão
+- **Objetivo:** provar, no Claude Code real, que o mecanismo de interceptação suporta R1, R5, R14 e R17 **antes** de construir o resto.
+- **Escopo:** script descartável em `scripts/spike/` (hook Node mínimo + servidor HTTP mínimo, sem JEV, sem DB) e plugin local mínimo.
+- **Fora do escopo:** JEV, UI, persistência, qualidade de código de produção.
+- **Entregáveis:**
+  - [ ] Hook bloqueia prompt e exibe motivo no terminal
+  - [ ] Hook segura o prompt por 60s (timeout do hook = 75s) e libera por sinal externo (`curl`)
+  - [ ] Expiração de 60s descarta o prompt
+  - [ ] Verificado se `/guardian-*` (comando de plugin) dispara `UserPromptSubmit` e com qual texto
+  - [ ] Verificado o nome final dos comandos (namespacing do plugin)
+  - [ ] Verificado comportamento com servidor offline (fail-open)
+  - [ ] 1–3 chamadas reais ao JEV (G10) para medir latência e validar idioma da rubrica
+  - [ ] Conclusões registradas em [[CLAUDE_CODE_HOOKS]], [[TYPESAFE_JEV]] e ADR-0005 atualizado
+- **Dependências:** Fase 1; chave TypeSafe no `.env` (para o item de JEV).
+- **Critérios de aceite:** todos os itens acima com evidência (log/print).
+- **DoD:** ADR-0005 confirmado ou regras R5/R14 revisadas com o engenheiro (G2).
+- **Riscos:** hook não suportar espera longa → plano B: bloquear na hora + reenvio (opção "b" do intake).
+
+## FASE 3 — Fundação técnica
+- **Objetivo:** monorepo executável com qualidade automatizada.
+- **Escopo:** `pnpm-workspace.yaml`, `package.json` raiz, tsconfig base, ESLint, Prettier, Vitest, `packages/shared` (tipos, enums, constantes de negócio), lefthook, detector de segredos do pre-commit, GitHub Actions.
+- **Entregáveis:**
+  - [ ] `pnpm install && pnpm lint && pnpm typecheck && pnpm test && pnpm build` verdes
+  - [ ] `packages/shared` com status, motivos, constantes (5, 50, 75, 60) e contratos HTTP
+  - [ ] lefthook instalado (pre-commit, commit-msg, pre-push)
+  - [ ] CI verde num PR
+- **Dependências:** Fase 2 (contratos ajustados pelo spike).
+- **DoD:** pipeline local e CI verdes; hooks bloqueiam commit com `.env`.
+- **Riscos:** `better-sqlite3` exigir toolchain nativa.
+
+## FASE 4 — Núcleo de avaliação
+- **Objetivo:** domínio puro de decisão + adapter JEV.
+- **Escopo:** isenção `/guardian-*`, contagem de palavras, detecção e mascaramento de segredos, composição de nota e faixas, porta `Avaliador` com `AvaliadorJev` e `AvaliadorFake`, timeout/erros → indisponível.
+- **Entregáveis:**
+  - [ ] Funções de domínio com 100% dos casos de limite testados
+  - [ ] Padrões de segredo com testes positivos/negativos (fixtures sintéticas)
+  - [ ] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]]
+  - [ ] Rubrica calibrada com os 3 exemplos-alvo (chamadas reais com G10)
+- **DoD:** testes verdes sem rede; calibração registrada.
+- **Riscos:** rubrica mal calibrada; latência do JEV.
+
+## FASE 5 — Servidor e persistência
+- **Objetivo:** API local completa.
+- **Escopo:** Fastify em `127.0.0.1`, config, SQLite + Drizzle + migrations, rotas de [[API_CONTRACTS]], retenção 60s com long-poll, override/cancelar, SSE, health do JEV.
+- **Entregáveis:**
+  - [ ] Todas as rotas com testes de integração (`inject`, SQLite em memória, fake)
+  - [ ] Retenção: expiração, override, cancelamento, override expirado (409), override em segredo (403)
+  - [ ] Nada não mascarado em DB/log/SSE (teste)
+- **DoD:** contrato da API congelado para Fases 6 e 7.
+
+## FASE 6 — Plugin Claude Code
+- **Objetivo:** interceptação real, instalável.
+- **Escopo:** `plugins/claude-code` (manifest, hooks.json com timeout 75s, `hook.mjs` sem dependências, comandos `/guardian-active` / `/guardian-inactive`), `marketplace.json` na raiz, mensagens de terminal.
+- **Entregáveis:**
+  - [ ] Instalação via `/plugin marketplace add` + `/plugin install`
+  - [ ] allow / block / hold / fail-open testados (stdin simulado)
+  - [ ] Ativar/desativar projeto funcionando
+- **Dependências:** Fase 5.
+- **DoD:** fluxo J2/J3/J4 funciona no Claude Code real (sem UI, override via `curl`).
+
+## FASE 7 — UI
+- **Objetivo:** observabilidade e override.
+- **Escopo:** abas de projetos + Playground, colunas Todos × Liberados, cards com marcador e 4 barras, modal de override com aviso, banner JEV indisponível, SSE com reconexão, servida pelo Fastify.
+- **Entregáveis:**
+  - [ ] Todos os marcadores com cor + texto
+  - [ ] Override/cancelar dentro da janela de 60s (contador visível)
+  - [ ] Playground nunca libera
+- **Dependências:** Fase 5 (pode correr em paralelo à 6).
+- **DoD:** jornadas J1–J6 navegáveis.
+
+## FASE 8 — QA e Homologação
+- **Objetivo:** validar o MVP contra a Definition of MVP Done.
+- **Escopo:** QA paralelo (regras, API, hook, UI, segurança), security-review, execução do [[HOMOLOGATION_SCRIPT]] pelo engenheiro, ajuste fino da rubrica.
+- **DoD:** roteiro 15/15 aprovado; nenhum achado crítico aberto.
+
+## FASE 9 — MVP Release
+- **Objetivo:** publicar `v1.0.0`.
+- **Entregáveis:** CHANGELOG, README final, tag `v1.0.0` em `main` (humano), status atualizado.
+- **DoD:** Definition of MVP Done 100% marcada.

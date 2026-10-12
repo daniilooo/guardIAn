@@ -1,0 +1,34 @@
+# GitFlow
+
+Procedimento operacional: `.ai/skills/git-flow/SKILL.md` e `.ai/skills/commit/SKILL.md`.
+
+```mermaid
+gitGraph
+  commit id: "bootstrap"
+  branch develop
+  checkout develop
+  branch feature/2-spike-portao
+  commit id: "spike"
+  checkout develop
+  merge feature/2-spike-portao tag: "squash"
+  checkout main
+  merge develop tag: "v0.2.0"
+```
+
+| Item | Decisão |
+|---|---|
+| Remoto | GitHub `git@github.com:daniilooo/guardIAn.git` |
+| Branches | `main`, `develop`, `feature/*`, `fix/*`, `hotfix/*`, `release/*` (opcional) |
+| Commits | Conventional Commits em PT-BR |
+| Merge feature → develop | squash |
+| Merge develop → main | merge commit + tag |
+| Versionamento | SemVer; fase concluída → `v0.<fase>.0` (sugestão); MVP → `v1.0.0` |
+| Revisão | Engenheiro revisa sozinho; Reviewer (IA) faz pré-revisão |
+| Proteção (recomendada) | `main` e `develop` sem push direto; CI obrigatório no PR |
+
+## Permissões da LLM
+| Ação | Permissão |
+|---|---|
+| Criar branch / commitar na própria branch | ✅ |
+| Push / abrir PR | ⚠️ autorização explícita |
+| Merge / tag / release | ❌ humano |
