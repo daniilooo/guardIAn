@@ -15,3 +15,4 @@ Condições que **sempre** devem ser verdadeiras. Violação = bug crítico.
 | **I9** | Falha do JEV ou do servidor nunca trava o CLI do usuário (fail-open, R7/R17), **exceto** bloqueios locais determinísticos (R2, R16) que já tenham sido decididos. |
 | **I10** | Testes automatizados e CI nunca chamam a API real da TypeSafe. |
 | **I11** | O hook **sempre decide antes do timeout do CLI** (retenção 60s < relógio interno do hook < timeout 75s). Hook morto pelo CLI = prompt liberado, o que violaria I1. _(Descoberta do spike, S7.)_ |
+| **I12** | Se a conexão de espera do hook cair (Esc, Ctrl+C, CLI fechado), a retenção termina **na hora** como `CANCELADO_NO_CLI` e o override fica indisponível. Nunca exibir "Enviar mesmo assim" para um prompt que o CLI já descartou. _(Descoberta do spike, S12.)_ |

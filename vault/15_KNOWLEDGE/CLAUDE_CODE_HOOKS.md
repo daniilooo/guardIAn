@@ -15,6 +15,10 @@
 | S8 | Slash commands disparam o hook? | ✅ Sim, com o **texto bruto**: `/guardian-active` e `/guardian-spike:guardian-active` (forma curta e com namespace funcionam) | T6a/T6b |
 | S9 | Hook pode tratar o comando sozinho? | ✅ Sim — bloqueando com mensagem de confirmação; **zero tokens de LLM**. Apresentação: "blocked by hook" (texto fixo do CLI) | T6c |
 | S10 | Aviso sem bloquear (servidor offline) | ✅ stdout `{"systemMessage":"..."}` + exit 0 → aviso exibido e prompt segue | T7 |
+| S11 | Espera de 60s na TUI interativa | ✅ prompt retido até o fim e descartado com a mensagem do hook | Teste manual 1 |
+| S12 | **Esc** durante a retenção | ✅ o CLI mata o hook e **descarta** o prompt (nada vai à LLM). ⚠️ O servidor **não percebe** e mantém a retenção aberta até expirar | Teste manual 2 + logs |
+| S13 | Autocomplete da TUI | Insere a forma com namespace (`/guardian-spike:guardian-active`) → o hook precisa reconhecer as duas formas | Teste manual 3 |
+| S14 | Campos de entrada variam por versão/modo | No modo interativo apareceu também `scratchpad_dir` → o hook deve ler só os campos que usa e ignorar o resto | Teste manual |
 
 ## Consequências para o design
 1. **I11 (nova invariante):** o hook **deve decidir sozinho antes do timeout do CLI**. O timeout do hook (75s) precisa ser maior que a retenção (60s) + margem, e o hook tem seu próprio relógio que **barra** ao estourar a retenção. Se o hook morrer pelo timeout do CLI, um prompt barrado vaza para a LLM.
@@ -22,9 +26,7 @@
 3. Reconhecer as duas formas: `/guardian-active` e `/<plugin>:guardian-active`.
 4. `prompt_id` do CLI pode servir de chave de correlação.
 
-## Pendências (validação manual interativa)
-- Aparência da espera de 60s na TUI (spinner? mensagem do stderr visível?).
-- O que acontece se o usuário pressionar **Esc/Ctrl+C** durante a retenção (o prompt é descartado ou passa?).
+5. **I12 (nova invariante):** se a conexão de espera do hook cair (Esc, Ctrl+C, CLI fechado), o servidor encerra a retenção **imediatamente** como `CANCELADO_NO_CLI`, emite o evento SSE e o override deixa de estar disponível. Implementação: escutar `close` da requisição de long-poll (Fase 5).
 
 ## Formato
 ```json

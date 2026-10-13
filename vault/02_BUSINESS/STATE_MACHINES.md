@@ -15,6 +15,7 @@ stateDiagram-v2
   Retido --> Liberado: Enviar mesmo assim (🔵)
   Retido --> Descartado: Cancelar
   Retido --> Descartado: 60s sem decisão
+  Retido --> Descartado: Esc/Ctrl+C no CLI (I12)
   BarradoSegredo --> Descartado
   ExecutadoPeloHook --> [*]
   PassaDireto --> [*]

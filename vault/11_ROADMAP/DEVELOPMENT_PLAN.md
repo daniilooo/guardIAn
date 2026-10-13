@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 0 | Intake | ✅ Concluído | — |
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
-| 2 | Spike do portão | 🔄 Em andamento | v0.2.0 |
+| 2 | Spike do portão | ✅ Concluído | v0.2.0 |
 | 3 | Fundação técnica | ⬜ Não iniciado | v0.3.0 |
 | 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
@@ -37,7 +37,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Entregáveis:** vault, `.ai/`, adapters Claude/Codex/local, agentes, contratos, skills, especificação de hooks, GitFlow, roadmap, HTMLs, manual, README, git local (`main` + `develop`).
 - **DoD:** estrutura criada e commitada localmente; nenhum código de produto. ✔
 
-## FASE 2 — Spike do portão
+## FASE 2 — Spike do portão ✅
 - **Objetivo:** provar, no Claude Code real, que o mecanismo de interceptação suporta R1, R5, R14 e R17 **antes** de construir o resto.
 - **Escopo:** script descartável em `scripts/spike/` (hook Node mínimo + servidor HTTP mínimo, sem JEV, sem DB) e plugin local mínimo.
 - **Fora do escopo:** JEV, UI, persistência, qualidade de código de produção.
@@ -49,7 +49,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] Verificado o nome final dos comandos (namespacing do plugin)
   - [x] Verificado comportamento com servidor offline (fail-open)
   - [x] Descoberto: hook que estoura o timeout do CLI deixa o prompt passar → I11
-  - [ ] Validação manual interativa: aparência da espera e Esc/Ctrl+C durante a retenção
+  - [x] Validação manual interativa: espera de 60s OK; Esc descarta o prompt, mas o servidor não percebe → I12
   - [x] Chamadas reais ao JEV (G10): latência 272–569 ms; rubrica acerta 3/3 em PT e EN
   - [x] Conclusões registradas em [[CLAUDE_CODE_HOOKS]], [[TYPESAFE_JEV]] e ADR-0005 atualizado
   - [x] Decisão do engenheiro: `/guardian-*` executados pelo hook (D42)
@@ -87,7 +87,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Escopo:** Fastify em `127.0.0.1`, config, SQLite + Drizzle + migrations, rotas de [[API_CONTRACTS]], retenção 60s com long-poll, override/cancelar, SSE, health do JEV.
 - **Entregáveis:**
   - [ ] Todas as rotas com testes de integração (`inject`, SQLite em memória, fake)
-  - [ ] Retenção: expiração, override, cancelamento, override expirado (409), override em segredo (403)
+  - [ ] Retenção: expiração, override, cancelamento, override expirado (409), override em segredo (403), queda da conexão do hook → `CANCELADO_NO_CLI` (I12)
   - [ ] Nada não mascarado em DB/log/SSE (teste)
 - **DoD:** contrato da API congelado para Fases 6 e 7.
 
@@ -97,6 +97,8 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Entregáveis:**
   - [ ] Instalação via `/plugin marketplace add` + `/plugin install`
   - [ ] allow / block / hold / fail-open testados (stdin simulado)
+  - [ ] Relógio interno do hook barra antes do timeout do CLI (I11)
+  - [ ] Comandos reconhecidos nas formas `/guardian-x` e `/guardian:guardian-x` (D42)
   - [ ] Ativar/desativar projeto funcionando
 - **Dependências:** Fase 5.
 - **DoD:** fluxo J2/J3/J4 funciona no Claude Code real (sem UI, override via `curl`).

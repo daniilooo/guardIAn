@@ -56,6 +56,7 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D41 | Hotfix sai de `main` e entra via `develop` (consequência de D40); `release/*` removido | Claude |
 | D42 | Comandos `/guardian-*` são executados pelo próprio hook (zero tokens de LLM); R14 reescrita | Engenheiro (recomendação do spike) |
 | D43 | Nova invariante I11: o hook decide sempre antes do timeout do CLI | Spike (S7) |
+| D44 | Nova invariante I12: queda da conexão do hook encerra a retenção como `CANCELADO_NO_CLI` | Spike (S12) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |

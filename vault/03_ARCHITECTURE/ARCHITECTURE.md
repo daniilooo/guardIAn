@@ -47,7 +47,8 @@ flowchart TD
 2. A UI faz override/cancelamento; o servidor resolve a espera.
 3. O hook devolve ao Claude Code: **liberar** (exit 0) ou **bloquear** (motivo exibido no terminal).
 4. Timeout do hook no Claude Code: **75s** (padrão é 60s — insuficiente).
-5. O estado de retenção vive **em memória** no servidor + decisão persistida no SQLite; reinício do servidor descarta retenções pendentes (fail-safe: prompt descartado).
+5. Se a conexão de long-poll cair (Esc/Ctrl+C no CLI), a retenção termina na hora como `CANCELADO_NO_CLI` (I12).
+6. O estado de retenção vive **em memória** no servidor + decisão persistida no SQLite; reinício do servidor descarta retenções pendentes (fail-safe: prompt descartado).
 
 ## Decisões de borda
 - Servidor só em `127.0.0.1` ([[ADR-0006-fail-open-e-localhost]]).
