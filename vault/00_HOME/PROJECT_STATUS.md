@@ -1,19 +1,19 @@
 # PROJECT STATUS
 
-_Atualizado em: 2026-10-12_
+_Atualizado em: 2026-10-13_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 3 — Fundação técnica** (Não iniciado) |
-| Etapa atual | Fase 2 concluída — PR #3 aguardando merge |
-| Branch atual | `feature/2-spike-portao` |
+| Fase atual | **FASE 3 — Fundação técnica** (Em andamento) |
+| Etapa atual | Tooling pronto e verde localmente; PR para `develop` |
+| Branch atual | `feature/3-fundacao-tecnica` |
 | Última entrega | FASE 2 — Spike do portão (hook validado, JEV medido) |
-| Última decisão | D44 — queda da conexão do hook encerra a retenção (I12) |
+| Última decisão | D45–D47 — TS 6.0, scripts em TS via Node puro, fonte única hook/CI |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | Merge do PR #3 → PR `develop → main` + tag `v0.2.0` → iniciar Fase 3 |
-| Testes atuais | não há código ainda |
-| Release atual | — |
+| Próxima ação | Merge do PR da Fase 3 → release `v0.3.0` → Fase 4 (núcleo de avaliação) |
+| Testes atuais | 46 testes (shared + scripts) verdes |
+| Release atual | `v0.2.0` |
 
 ## Progresso por fase
 | Fase | Status |
@@ -21,7 +21,7 @@ _Atualizado em: 2026-10-12_
 | 0 — Intake | ✅ Concluído |
 | 1 — Bootstrap | ✅ Concluído |
 | 2 — Spike do portão | ✅ Concluído |
-| 3 — Fundação técnica | ⬜ Não iniciado |
+| 3 — Fundação técnica | 🔄 Em andamento |
 | 4 — Núcleo de avaliação | ⬜ Não iniciado |
 | 5 — Servidor e persistência | ⬜ Não iniciado |
 | 6 — Plugin Claude Code | ⬜ Não iniciado |

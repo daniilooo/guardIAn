@@ -57,6 +57,9 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D42 | Comandos `/guardian-*` são executados pelo próprio hook (zero tokens de LLM); R14 reescrita | Engenheiro (recomendação do spike) |
 | D43 | Nova invariante I11: o hook decide sempre antes do timeout do CLI | Spike (S7) |
 | D44 | Nova invariante I12: queda da conexão do hook encerra a retenção como `CANCELADO_NO_CLI` | Spike (S12) |
+| D45 | TypeScript 6.0 (não 7) por compatibilidade com typescript-eslint (TD2); `@types/node` 22 | Claude (Fase 3) |
+| D46 | Scripts de tooling em TypeScript executados pelo Node puro (type stripping); `engines.node >= 22.18` | Claude (Fase 3) |
+| D47 | Detector de segredos e validador de commit são fonte única para hook **e** CI; `scripts/ci/check-secrets.sh` removido | Claude (Fase 3) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |

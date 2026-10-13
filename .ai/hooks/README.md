@@ -4,7 +4,7 @@ Existem **dois tipos** — não confundir:
 
 | Tipo | O quê | Onde |
 |---|---|---|
-| **Hooks de desenvolvimento** | Protegem o código do guardIAn (git) | `lefthook.yml` (criado na Fase 3) |
+| **Hooks de desenvolvimento** | Protegem o código do guardIAn (git) | `lefthook.yml` (instalado pelo `pnpm install` via `prepare`) |
 | **Hook do produto** | É o próprio guardIAn interceptando prompts (`UserPromptSubmit` do Claude Code) | `plugins/claude-code/` (Fase 6) |
 
 Hooks executam apenas tarefas **determinísticas**. Nada de decisão arquitetural em hook.
@@ -13,15 +13,14 @@ Hooks executam apenas tarefas **determinísticas**. Nada de decisão arquitetura
 
 | Nome | Momento | Comando | Objetivo | Tempo esperado | Bloqueante |
 |---|---|---|---|---|---|
-| format | pre-commit | `prettier --check {staged_files}` | Formatação | ~2s | ✅ |
-| lint | pre-commit | `eslint {staged_files}` | Lint rápido | ~3s | ✅ |
-| secrets | pre-commit | `node scripts/check-secrets.mjs {staged_files}` + bloqueio de `.env` | Impedir segredos no git | ~1s | ✅ |
-| commit-msg | commit-msg | validação Conventional Commits | Padrão de mensagem | <1s | ✅ |
-| typecheck | pre-push | `pnpm typecheck` | Tipos | ~10s | ✅ |
-| test | pre-push | `pnpm test` | Testes (sem JEV real) | ~10–30s | ✅ |
-| build | pre-push | `pnpm build` | Build | ~15s | ✅ |
+| format | pre-commit | `prettier --check --ignore-unknown {staged_files}` | Formatação | ~1s | ✅ |
+| lint | pre-commit | `eslint --no-warn-ignored {staged_files}` | Lint rápido | ~2s | ✅ |
+| secrets | pre-commit | `node scripts/check-secrets.ts --staged` (bloqueia também `.env`) | Impedir segredos no git | <1s | ✅ |
+| conventional-commits | commit-msg | `node scripts/check-commit-msg.ts {1}` | Padrão de mensagem | <1s | ✅ |
+| typecheck-test-build | pre-push | `pnpm typecheck && pnpm test && pnpm build` | Tipos, testes (sem JEV real) e build | ~5s hoje | ✅ |
 
-> O detector do pre-commit pode reaproveitar os padrões do módulo de segredos do produto (`packages/shared`) — uma única fonte de padrões.
+> Fonte única: `scripts/check-secrets.ts` usa os padrões de `packages/shared/src/segredos.ts` (os mesmos do produto) e `scripts/check-commit-msg.ts` é usado pelo hook **e** pelo CI. Ambos rodam em Node puro (type stripping), sem dependências.
+> Emergência: `git commit --no-verify` pula os hooks, mas o CI aplica as mesmas verificações.
 
 ## CI (GitHub Actions)
-Em PR para `develop` e `main`: install → lint → typecheck → test → build. Sem segredos, sem JEV real.
+Em PR para `develop` e `main`: install → format:check → lint → typecheck → test → build. Sem segredos, sem JEV real. Detalhes: `vault/06_INFRASTRUCTURE/CI_CD.md`.
