@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+**/*.md
+vault/
+docs/
+.ai/
+.claude/
+scripts/spike/
+coverage/
+dist/

@@ -26,11 +26,11 @@ UI local em `http://127.0.0.1:7070`: abas por projeto, coluna com **todos** os p
 
 ## Como executar
 
-> Ainda não há código executável. Os comandos abaixo são o alvo definido para o MVP (Fase 3 em diante).
+> O servidor e a UI ainda não existem (Fases 5–7). O tooling já funciona: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
 
 ```bash
-corepack enable          # habilita o pnpm (Node 22 LTS)
-pnpm install
+corepack enable          # habilita o pnpm (Node ≥ 22.18); sem sudo: corepack enable --install-directory ~/.local/bin
+pnpm install             # instala dependências e os hooks git (lefthook)
 cp .env.example .env     # preencha TYPESAFE_API_KEY
 pnpm start               # http://127.0.0.1:7070
 ```

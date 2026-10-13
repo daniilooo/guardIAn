@@ -1,0 +1,8 @@
+packages:
+  - apps/*
+  - packages/*
+  - plugins/*
+
+# Dependências autorizadas a rodar scripts de instalação (pnpm bloqueia por padrão).
+allowBuilds:
+  lefthook: true
