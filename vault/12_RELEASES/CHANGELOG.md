@@ -4,6 +4,12 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
 
+## [0.6.0] — Plugin Claude Code
+### Adicionado
+- Plugin `guardian` (`plugins/claude-code`): hook `UserPromptSubmit` sem dependências, comandos `/guardian-active` e `/guardian-inactive`.
+- Marketplace na raiz do repositório: `/plugin install guardian --marketplace daniilooo/guardIAn`.
+- Testes executando o hook real contra o servidor; validação no Claude Code real.
+
 ## [0.5.0] — Servidor e persistência
 ### Adicionado
 - Servidor Fastify local (`pnpm start`/`pnpm dev`) com SQLite + Drizzle e migrations automáticas.

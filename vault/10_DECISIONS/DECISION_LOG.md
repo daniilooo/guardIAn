@@ -71,6 +71,10 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D56 | Servidor roda direto com Node (type stripping), sem etapa de build: `pnpm start` | Claude (Fase 5) |
 | D57 | Um `cwd` dentro de um projeto registrado (subdiretório) pertence a ele; prefixo parecido não | Claude (Fase 5) |
 | D58 | Retenções `RETIDO` órfãs após reinício viram `DESCARTADO_TIMEOUT` (fail-safe) | Claude (Fase 5) |
+| D59 | Hook em JavaScript puro (`hook.mjs`, Node ≥ 18), constantes espelhadas de `packages/shared` e verificadas por teste | Claude (Fase 6) |
+| D60 | Falha **durante a retenção** (servidor caiu, prazo interno) barra o prompt; falha **antes** da avaliação libera (R17) | Claude (Fase 6) |
+| D61 | Arquivos `commands/*.md` servem ao autocomplete e, se o servidor estiver offline, instruem a LLM a só avisar (custo mínimo) | Claude (Fase 6) |
+| D62 | Testes do plugin ficam em `tests/` (fora da pasta instalada do plugin) | Claude (Fase 6) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |
