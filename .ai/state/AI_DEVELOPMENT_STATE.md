@@ -4,25 +4,25 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 4 — Núcleo de avaliação** (em andamento) |
-| Etapa atual | Fase 4 concluída; PR para develop |
-| Branch atual | `feature/4-nucleo-avaliacao` (local) |
-| Última entrega | Fase 3 — `v0.3.0` |
-| Última decisão | D48–D50 |
+| Fase atual | **FASE 6 — Plugin Claude Code** (não iniciada) |
+| Etapa atual | Fase 5 concluída; PR para develop |
+| Branch atual | `feature/5-servidor-persistencia` |
+| Última entrega | Fase 5 — servidor e persistência |
+| Última decisão | D51–D58 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | Smoke do JEV (G10) → push/PR (G8) → `v0.4.0` → Fase 5 |
-| Testes atuais | 115 testes verdes (`pnpm test`) |
-| Release atual | `v0.3.0` |
+| Próxima ação | PR da Fase 5 → `v0.5.0` → Fase 6 (plugin) / Fase 7 (UI) |
+| Testes atuais | 138 testes verdes (`pnpm test`) |
+| Release atual | `v0.4.0` |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
 - **Data/ferramenta:** 2026-10-13 — Claude Code (Opus)
-- **Contexto:** Fase 4 — núcleo de avaliação.
-- **Estado:** `apps/server` criado (sem Fastify ainda). Domínio puro: `dominio/comandos.ts` (2 formas + desconhecido), `palavras.ts`, `segredos.ts` (mascaramento com sobreposição), `nota.ts` (normalização, composta, faixa). Aplicação: porta `Avaliador` e `avaliarPrompt` (ordem I4) + `permiteOverride`. Infra: `AvaliadorJev` (HTTP direto, D48), `AvaliadorFake`, `rubrica.ts`. 115 testes; mutações de limite e ordem são detectadas.
-- **Alterações:** `apps/server/**`, docs (plano, decisões D48–D50, integrações, módulos, rubrica, agente backend).
-- **Decisões:** D48 (HTTP direto), D49 (comando desconhecido não avaliado), D50 (faixa sem arredondamento).
-- **Pendências:** merge do PR e release `v0.4.0` (humano). Smoke com JEV real executado: 3/3 faixas corretas.
-- **Próximo passo:** Fase 5 — Fastify em 127.0.0.1, config.ts, SQLite + Drizzle, rotas de API_CONTRACTS, retenção 60s com long-poll e I12 (close da conexão), SSE, health.
-- **Arquivos relevantes:** `apps/server/src/aplicacao/avaliar-prompt.ts`, `vault/03_ARCHITECTURE/API_CONTRACTS.md`, `vault/03_ARCHITECTURE/DATA_MODEL.md`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-5`.
+- **Contexto:** Fase 5 — servidor e persistência.
+- **Estado:** `apps/server` completo para o MVP: `config.ts`, `main.ts` (composição; `pnpm start`), `infra/db` (schema, conexão com migrations, repositórios), `aplicacao/servico.ts` (casos de uso), `aplicacao/retencao.ts` (60s + I12), `aplicacao/eventos.ts` (SSE), `http/app.ts` (rotas + Host/Origin). 138 testes; ponta a ponta com curl OK.
+- **Alterações:** `apps/server/**`, `packages/shared` (BLOQUEADO, `message`/`can_override`/`jev_failure`, `allow.message`), docs (DATA_MODEL e API_CONTRACTS congelados, decisões D51–D58, segurança, runbook, CHANGELOG 0.5.0).
+- **Decisões:** D51–D58.
+- **Pendências:** push/PR (G8), merge e `v0.5.0` (humano).
+- **Próximo passo:** Fase 6 — `plugins/claude-code`: `.claude-plugin/plugin.json`, `hooks/hooks.json` (timeout 75), `hook.mjs` sem dependências (POST `/api/hook/prompt`; `hold` → long-poll com prazo interno de 68s, I11; `allow.message` → `systemMessage`; offline → `systemMessage` de R17), `commands/guardian-active.md` e `guardian-inactive.md` (só descrição/autocomplete), `marketplace.json` na raiz. Referência: `scripts/spike/plugin/hook.mjs`.
+- **Arquivos relevantes:** `vault/03_ARCHITECTURE/API_CONTRACTS.md`, `vault/15_KNOWLEDGE/CLAUDE_CODE_HOOKS.md`, `packages/shared/src/constantes.ts`.

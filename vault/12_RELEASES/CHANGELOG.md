@@ -4,6 +4,13 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
 
+## [0.5.0] — Servidor e persistência
+### Adicionado
+- Servidor Fastify local (`pnpm start`/`pnpm dev`) com SQLite + Drizzle e migrations automáticas.
+- API completa: hook (avaliação, retenção 60s com long-poll), projetos, prompts, override/cancelar, playground, health e SSE.
+- I12: fechar a conexão de espera cancela a retenção na hora.
+- Proteções de `Host`/`Origin`; logs sem conteúdo de prompts.
+
 ## [0.4.0] — Núcleo de avaliação
 ### Adicionado
 - `apps/server`: domínio de avaliação (comandos, palavras, mascaramento de segredos, nota composta e faixas) e pipeline `avaliarPrompt` (ordem I4).

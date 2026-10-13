@@ -13,7 +13,8 @@ export interface EntradaHook {
 }
 
 export type RespostaHook =
-  | { action: 'allow' }
+  /** `message` vira um aviso ao usuário (systemMessage), nunca contexto para a LLM. */
+  | { action: 'allow'; message?: string }
   | { action: 'block'; reason: string }
   | { action: 'hold'; prompt_id: string; hold_seconds: number; reason: string };
 
@@ -44,6 +45,12 @@ export interface PromptAvaliado {
   scores: NotasPorCriterio | null;
   final_decision: DecisaoFinal;
   hold_expires_at: string | null;
+  /** Mensagem exibida ao usuário (ex.: "Prompt muito curto…"). */
+  message: string | null;
+  /** R6 / D38 — true só enquanto o prompt está retido e não contém segredo. */
+  can_override: boolean;
+  /** ⚪ — motivo técnico quando o JEV não avaliou. */
+  jev_failure: string | null;
 }
 
 export type SaudeJev = 'disponivel' | 'indisponivel' | 'desconhecido';

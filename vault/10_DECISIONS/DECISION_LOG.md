@@ -63,6 +63,14 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D48 | JEV chamado por **HTTP direto** (sem SDK), uma única tentativa com `JEV_TIMEOUT_MS`: sem dependência nova e tempo total previsível dentro do prazo do hook (I11) | Claude (Fase 4) |
 | D49 | `/guardian-<desconhecido>` também nunca é avaliado (R14); o hook responderá com a lista de comandos válidos | Claude (Fase 4) |
 | D50 | A faixa usa a nota composta **sem arredondamento** (49,999 é barrado); arredondamento só na exibição | Claude (Fase 4) |
+| D51 | Prompt e avaliação numa única tabela `prompts` (1:1) | Claude (Fase 5) |
+| D52 | Comandos `/guardian-*` executados pelo **servidor** via `/api/hook/prompt`; o hook só repassa (mantém D42: nada vai à LLM) | Claude (Fase 5) |
+| D53 | Nova decisão final `BLOQUEADO` para segredo (sem retenção, sem override) | Claude (Fase 5) |
+| D54 | 🟡 e ⚪ liberam com aviso ao usuário (`message` → `systemMessage` do hook), sem tokens de LLM | Claude (Fase 5) |
+| D55 | Proteção local: `Host` e `Origin` precisam ser o próprio servidor (DNS rebinding / CSRF) | Claude (Fase 5) |
+| D56 | Servidor roda direto com Node (type stripping), sem etapa de build: `pnpm start` | Claude (Fase 5) |
+| D57 | Um `cwd` dentro de um projeto registrado (subdiretório) pertence a ele; prefixo parecido não | Claude (Fase 5) |
+| D58 | Retenções `RETIDO` órfãs após reinício viram `DESCARTADO_TIMEOUT` (fail-safe) | Claude (Fase 5) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |
