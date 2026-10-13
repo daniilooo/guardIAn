@@ -4,15 +4,15 @@ _Atualizado em: 2026-10-13_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 7 — UI** (Em andamento) |
-| Etapa atual | Fase 6 concluída; implementando a UI |
+| Fase atual | **FASE 8 — QA e Homologação** (Não iniciado) |
+| Etapa atual | Fases 6 e 7 concluídas — PRs para `develop` |
 | Branch atual | `feature/6-plugin-claude-code` → `feature/7-ui` |
-| Última entrega | FASE 6 — Plugin Claude Code |
-| Última decisão | D59–D62 (hook JS puro, falha durante retenção barra) |
+| Última entrega | FASE 6 (plugin) e FASE 7 (UI) |
+| Última decisão | D63–D67 (UI servida pelo servidor, abas por link, visualização) |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | Merge do PR → release `v0.5.0` → Fases 6 (plugin) e 7 (UI), que podem correr em paralelo |
-| Testes atuais | 150 testes verdes |
+| Próxima ação | Merge dos PRs das Fases 6 e 7 → releases → Fase 8 (QA + roteiro de homologação) |
+| Testes atuais | 179 testes verdes |
 | Release atual | `v0.5.0` |
 
 ## Progresso por fase
@@ -25,7 +25,7 @@ _Atualizado em: 2026-10-13_
 | 4 — Núcleo de avaliação | ✅ Concluído |
 | 5 — Servidor e persistência | ✅ Concluído |
 | 6 — Plugin Claude Code | ✅ Concluído |
-| 7 — UI | 🔄 Em andamento |
+| 7 — UI | ✅ Concluído |
 | 8 — QA e Homologação | ⬜ Não iniciado |
 | 9 — MVP Release `v1.0.0` | ⬜ Não iniciado |
 

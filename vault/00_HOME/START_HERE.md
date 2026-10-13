@@ -9,9 +9,9 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 | | |
 |---|---|
 | **Versão** | `v0.5.0` |
-| **Fase** | ✅ Fase 6 concluída · 🔄 **Fase 7 — UI** |
+| **Fase** | ✅ Fases 6 e 7 concluídas · ⏭️ **Fase 8 — QA e Homologação** |
 | **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
-| **Próxima ação** | UI: abas, colunas, barras, override, playground |
+| **Próxima ação** | QA paralelo + roteiro de homologação no Claude Code real |
 
 Detalhes: [[PROJECT_STATUS]].
 
