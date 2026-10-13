@@ -7,12 +7,12 @@ description: Branches, PRs e versionamento do guardIAn (main/develop/feature/fix
 ## Branches
 | Branch | Origem | Destino | Quem faz merge |
 |---|---|---|---|
-| `main` | — | — | humano (merge commit) |
-| `develop` | `main` | — | humano |
+| `main` | — | — | humano — **só aceita PR de `develop`** (merge commit) |
+| `develop` | `main` | `main` | humano |
 | `feature/<fase>-<slug>` | `develop` | `develop` (squash) | humano |
 | `fix/<slug>` | `develop` | `develop` (squash) | humano |
-| `hotfix/<slug>` | `main` | `main` + `develop` | humano |
-| `release/x.y.z` | `develop` | `main` | humano (opcional no MVP) |
+| `hotfix/<slug>` | `main` | `develop` (squash) → depois `develop → main` | humano |
+
 
 Ex.: `feature/2-spike-portao`, `fix/hook-timeout`.
 
@@ -28,6 +28,9 @@ git push -u origin feature/<fase>-<slug>
 gh pr create --base develop --title "<conventional title>" --body-file <relatorio.md>
 ```
 Corpo do PR = relatório do Reporter (resumo, mudanças, testes, riscos) + checklist de gates.
+
+## Proteções no GitHub (rulesets)
+`main` e `develop` não aceitam push direto, force push nem exclusão — só merge via PR com CI verde (`politica-de-branch`, `seguranca`, `qualidade`). `develop` aceita só squash; `main` só merge commit e só de `develop`. Detalhes: `vault/06_INFRASTRUCTURE/CI_CD.md`.
 
 ## Proibido para LLM
 Merge, tag, push em `main`/`develop`, `--force`, apagar branch remota.

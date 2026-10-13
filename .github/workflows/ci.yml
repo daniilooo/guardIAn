@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+    types: [opened, synchronize, reopened, edited]
+  push:
+    branches: [develop, main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # Regras de fluxo: main só recebe PR vindo de develop; títulos de PR para develop
+  # seguem Conventional Commits (viram a mensagem do squash).
+  politica-de-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Origem do PR para main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          if [ "$HEAD_REF" != "develop" ]; then
+            echo "::error::A branch main só aceita merge vindo de develop (origem atual: $HEAD_REF)."
+            exit 1
+          fi
+          echo "Origem válida: develop -> main"
+      - name: Título do PR em Conventional Commits
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if ! printf '%s' "$TITLE" | grep -Eq '^(feat|fix|docs|test|refactor|chore|ci|build|perf)(\([a-z0-9-]+\))?!?: .{1,72}$'; then
+            echo "::error::Título do PR fora do padrão Conventional Commits: '$TITLE'"
+            echo "Exemplo: feat(server): adiciona rota de avaliação"
+            exit 1
+          fi
+          echo "Título válido: $TITLE"
+      - name: Push direto (apenas informativo)
+        if: github.event_name == 'push'
+        run: echo "Execução pós-merge em ${{ github.ref_name }}."
+
+  seguranca:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bloquear arquivos .env e segredos versionados
+        run: bash scripts/ci/check-secrets.sh
+
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detectar monorepo
+        id: detect
+        run: |
+          if [ -f package.json ]; then echo "enabled=true" >> "$GITHUB_OUTPUT"; else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Sem package.json: lint/typecheck/test/build serão ativados na Fase 3."
+          fi
+      - uses: pnpm/action-setup@v4
+        if: steps.detect.outputs.enabled == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.detect.outputs.enabled == 'true'
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Instalar dependências
+        if: steps.detect.outputs.enabled == 'true'
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        if: steps.detect.outputs.enabled == 'true'
+        run: pnpm lint
+      - name: Typecheck
+        if: steps.detect.outputs.enabled == 'true'
+        run: pnpm typecheck
+      - name: Testes (sem JEV real)
+        if: steps.detect.outputs.enabled == 'true'
+        env:
+          TYPESAFE_API_KEY: ""
+        run: pnpm test
+      - name: Build
+        if: steps.detect.outputs.enabled == 'true'
+        run: pnpm build
