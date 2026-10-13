@@ -51,6 +51,9 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D35 | Hooks de dev via lefthook (pre-commit, commit-msg, pre-push) | Proposta aceita |
 | D36 | Node 22 LTS (já instalado) em vez de 24 | Claude, registrado como TD1 |
 | D37 | Fase 2 = Spike do portão antes de qualquer código definitivo (maior risco técnico) | Claude |
+| D39 | Esteira de CI antecipada (politica-de-branch, seguranca, qualidade) | Engenheiro |
+| D40 | `main` e `develop` sem push direto — só merge via PR; `main` só aceita PR de `develop` (rulesets + check) | Engenheiro |
+| D41 | Hotfix sai de `main` e entra via `develop` (consequência de D40); `release/*` removido | Claude |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |

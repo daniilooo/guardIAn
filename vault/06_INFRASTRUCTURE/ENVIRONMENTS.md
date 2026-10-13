@@ -3,7 +3,7 @@
 | Ambiente | Como | Banco | JEV |
 |---|---|---|---|
 | Desenvolvimento | `pnpm dev` (Vite + Fastify watch) | `data/guardian.db` | real só com G10; padrão fake recomendado |
-| Testes / CI | `pnpm test` | SQLite em memória | **sempre fake** |
+| Testes / CI | `pnpm test` ([[CI_CD]]) | SQLite em memória | **sempre fake** |
 | Homologação | `pnpm build && pnpm start` + plugin instalado; projeto de teste separado | `data/guardian.db` | real |
 | Produção | Não existe no MVP (uso pessoal local = homologação aprovada) | — | — |
 
