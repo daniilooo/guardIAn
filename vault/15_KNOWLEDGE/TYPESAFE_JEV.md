@@ -18,3 +18,6 @@ Fonte: https://docs.typesafe.ai (consultado em 2026-10-12; índice em `/llms.txt
 - **Idioma:** PT-BR e EN classificaram os 3 exemplos-alvo na mesma faixa (diferença ≤ 3 p.p.) → adotar PT-BR (H7).
 - `confidence` variou de 0,56 a 1,00; mais baixo em *Clareza* e *O que fazer*.
 - Chamada HTTP direta (`fetch`) funciona — o SDK é opcional.
+
+## Smoke do adaptador de produção (2026-10-13, Fase 4)
+`apps/server/scripts/jev-smoke.ts`: 🔴 39,3% · 🟡 61,6% · 🟢 94,8%, latência 306–514 ms — consistente com o spike.

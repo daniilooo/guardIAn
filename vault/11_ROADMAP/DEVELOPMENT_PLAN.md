@@ -8,7 +8,7 @@
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
 | 2 | Spike do portão | ✅ Concluído | v0.2.0 |
 | 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
-| 4 | Núcleo de avaliação | 🔄 Em andamento | v0.4.0 |
+| 4 | Núcleo de avaliação | ✅ Concluído | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
 | 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
 | 7 | UI | ⬜ Não iniciado | v0.7.0 |
@@ -71,7 +71,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **DoD:** pipeline local e CI verdes; hooks bloqueiam commit com `.env` ou segredo.
 - **Riscos:** `better-sqlite3` exigir toolchain nativa.
 
-## FASE 4 — Núcleo de avaliação
+## FASE 4 — Núcleo de avaliação ✅
 - **Objetivo:** domínio puro de decisão + adapter JEV.
 - **Escopo:** isenção `/guardian-*`, contagem de palavras, detecção e mascaramento de segredos, composição de nota e faixas, porta `Avaliador` com `AvaliadorJev` e `AvaliadorFake`, timeout/erros → indisponível.
 - **Entregáveis:**
@@ -79,7 +79,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] Padrões de segredo com testes positivos/negativos (fixtures sintéticas) + mascaramento com sobreposição
   - [x] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]] (HTTP direto, D48) e `AvaliadorFake`
   - [x] Rubrica calibrada com os 3 exemplos-alvo (spike, mesmo texto da rubrica de produção)
-  - [ ] Smoke do adaptador de produção contra o JEV real (`apps/server/scripts/jev-smoke.ts`, G10)
+  - [x] Smoke do adaptador de produção contra o JEV real: 🔴 39,3% · 🟡 61,6% · 🟢 94,8% (306–514 ms)
 - **DoD:** testes verdes sem rede; calibração registrada.
 - **Riscos:** rubrica mal calibrada; latência do JEV.
 

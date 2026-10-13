@@ -9,9 +9,9 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 | | |
 |---|---|
 | **Versão** | `v0.3.0` |
-| **Fase** | 🔄 **Fase 4 — Núcleo de avaliação** |
+| **Fase** | ✅ Fase 4 concluída · ⏭️ **Fase 5 — Servidor e persistência** |
 | **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
-| **Próxima ação** | Domínio de avaliação + porta Avaliador (JEV/fake) |
+| **Próxima ação** | Fastify + SQLite + retenção 60s + SSE |
 
 Detalhes: [[PROJECT_STATUS]].
 
