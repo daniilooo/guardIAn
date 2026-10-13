@@ -6,7 +6,7 @@
 |---|---|---|---|
 | 0 | Intake | ✅ Concluído | — |
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
-| 2 | Spike do portão | ⬜ Não iniciado | v0.2.0 |
+| 2 | Spike do portão | 🔄 Em andamento | v0.2.0 |
 | 3 | Fundação técnica | ⬜ Não iniciado | v0.3.0 |
 | 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
@@ -42,14 +42,17 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Escopo:** script descartável em `scripts/spike/` (hook Node mínimo + servidor HTTP mínimo, sem JEV, sem DB) e plugin local mínimo.
 - **Fora do escopo:** JEV, UI, persistência, qualidade de código de produção.
 - **Entregáveis:**
-  - [ ] Hook bloqueia prompt e exibe motivo no terminal
-  - [ ] Hook segura o prompt por 60s (timeout do hook = 75s) e libera por sinal externo (`curl`)
-  - [ ] Expiração de 60s descarta o prompt
-  - [ ] Verificado se `/guardian-*` (comando de plugin) dispara `UserPromptSubmit` e com qual texto
-  - [ ] Verificado o nome final dos comandos (namespacing do plugin)
-  - [ ] Verificado comportamento com servidor offline (fail-open)
+  - [x] Hook bloqueia prompt e exibe motivo no terminal
+  - [x] Hook segura o prompt por 60s (timeout do hook = 75s) e libera por sinal externo (`curl`)
+  - [x] Expiração de 60s descarta o prompt
+  - [x] Verificado se `/guardian-*` (comando de plugin) dispara `UserPromptSubmit` e com qual texto
+  - [x] Verificado o nome final dos comandos (namespacing do plugin)
+  - [x] Verificado comportamento com servidor offline (fail-open)
+  - [x] Descoberto: hook que estoura o timeout do CLI deixa o prompt passar → I11
+  - [ ] Validação manual interativa: aparência da espera e Esc/Ctrl+C durante a retenção
   - [ ] 1–3 chamadas reais ao JEV (G10) para medir latência e validar idioma da rubrica
-  - [ ] Conclusões registradas em [[CLAUDE_CODE_HOOKS]], [[TYPESAFE_JEV]] e ADR-0005 atualizado
+  - [x] Conclusões registradas em [[CLAUDE_CODE_HOOKS]] e ADR-0005 atualizado (falta [[TYPESAFE_JEV]])
+  - [ ] Decisão do engenheiro sobre tratar `/guardian-*` no hook (G2/G5)
 - **Dependências:** Fase 1; chave TypeSafe no `.env` (para o item de JEV).
 - **Critérios de aceite:** todos os itens acima com evidência (log/print).
 - **DoD:** ADR-0005 confirmado ou regras R5/R14 revisadas com o engenheiro (G2).
