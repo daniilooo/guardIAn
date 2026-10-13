@@ -12,6 +12,9 @@ Fonte: https://docs.typesafe.ai (consultado em 2026-10-12; índice em `/llms.txt
 - Não documentado: latência, limites numéricos de rate, tamanho máximo de `state`, preço → **medir no spike**.
 - Páginas úteis: `/patterns/composite-scoring`, `/patterns/confidence-routing`, `/cookbooks/llm_guardrails`, `/model-jaggedness/jev-1.13`, `/agent-skill` (skill pronta para Claude Code/Codex gerarem integrações).
 
-## A preencher no spike
-- Latência p50/p95 de 1 chamada com 4 Scores: _?_
-- Instruções em PT-BR funcionam bem? _?_
+## Medido no spike (2026-10-12, `jev-1.13.0`, 6 chamadas)
+- **Latência** de 1 chamada com 4 Scores: **272–569 ms** (mediana ≈ 370 ms), medida da máquina local. Cabe com folga no hook; `JEV_TIMEOUT_MS=10000` é conservador.
+- **Tokens por chamada:** PT ≈ 713–746 entrada / 63 saída · EN ≈ 629–662 / 63 (EN ~12% mais barato na entrada; a rubrica é a maior parte).
+- **Idioma:** PT-BR e EN classificaram os 3 exemplos-alvo na mesma faixa (diferença ≤ 3 p.p.) → adotar PT-BR (H7).
+- `confidence` variou de 0,56 a 1,00; mais baixo em *Clareza* e *O que fazer*.
+- Chamada HTTP direta (`fetch`) funciona — o SDK é opcional.

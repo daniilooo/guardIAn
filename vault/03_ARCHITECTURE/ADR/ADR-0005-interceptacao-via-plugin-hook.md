@@ -10,7 +10,7 @@ Distribuir o guardIAn como **plugin do Claude Code** com:
 - comandos `/guardian-active` e `/guardian-inactive`;
 - o próprio repositório como marketplace.
 
-Opção a avaliar no spike: o hook tratar `/guardian-*` diretamente (chama a API e bloqueia com mensagem de confirmação), evitando gastar tokens da LLM com o comando.
+O hook trata `/guardian-*` diretamente (chama a API e bloqueia com mensagem de confirmação), sem gastar tokens da LLM — ver D42 abaixo.
 
 ## Alternativas
 - Proxy HTTP entre CLI e API da Anthropic — intrusivo, frágil, envolve credenciais.
@@ -23,8 +23,8 @@ Opção a avaliar no spike: o hook tratar `/guardian-*` diretamente (chama a API
 3. ✅ Slash commands disparam o hook com o texto bruto (`/guardian-active` e `/guardian:guardian-active`).
 4. ⚠️ Se o hook estourar o timeout do CLI, o prompt **passa** → nova invariante **I11**: o hook decide sempre antes do timeout.
 
-## Proposta pendente (gate G2/G5)
-Tratar `/guardian-active` e `/guardian-inactive` **dentro do hook**: o hook chama `POST /api/projects/activate|deactivate` e bloqueia com a mensagem "✅ guardIAn ativado neste projeto". Vantagens: zero tokens de LLM, sem prompt de permissão de Bash, resposta instantânea. Custo: o CLI exibe o rótulo fixo "blocked by hook". Implica reescrever R14 como: *"comandos `/guardian-*` nunca são avaliados; são executados pelo próprio hook"*.
+## Decisão complementar — D42 (aprovada pelo engenheiro)
+Tratar `/guardian-active` e `/guardian-inactive` **dentro do hook**: o hook chama `POST /api/projects/activate|deactivate` e bloqueia com a mensagem "✅ guardIAn ativado neste projeto". Vantagens: zero tokens de LLM, sem prompt de permissão de Bash, resposta instantânea. Custo: o CLI exibe o rótulo fixo "blocked by hook". R14 reescrita: *comandos `/guardian-*` nunca são avaliados; são executados pelo próprio hook*. Os arquivos `commands/*.md` do plugin existem só para o autocomplete e a descrição na TUI.
 
 ## Consequências
 - ✅ Captura nativa, antes da LLM, sem tocar credenciais.

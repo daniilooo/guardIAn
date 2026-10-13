@@ -26,7 +26,7 @@ O **domínio** é puro e totalmente testável. Regras e limiares vêm de `packag
 ```mermaid
 flowchart TD
   A[prompt bruto] --> B{/guardian-*?}
-  B -- sim --> X1[ignorar - allow]
+  B -- sim --> X1[executar comando no hook - confirma, nada vai à LLM]
   B -- não --> C{projeto ativo?}
   C -- não --> X2[allow sem registro]
   C -- sim --> D[detectar + mascarar segredos]

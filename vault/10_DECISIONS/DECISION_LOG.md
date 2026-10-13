@@ -54,13 +54,16 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D39 | Esteira de CI antecipada (politica-de-branch, seguranca, qualidade) | Engenheiro |
 | D40 | `main` e `develop` sem push direto — só merge via PR; `main` só aceita PR de `develop` (rulesets + check) | Engenheiro |
 | D41 | Hotfix sai de `main` e entra via `develop` (consequência de D40); `release/*` removido | Claude |
+| D42 | Comandos `/guardian-*` são executados pelo próprio hook (zero tokens de LLM); R14 reescrita | Engenheiro (recomendação do spike) |
+| D43 | Nova invariante I11: o hook decide sempre antes do timeout do CLI | Spike (S7) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |
 |---|---|---|
 | H1 | Override vale também para prompts barrados por <5 palavras | Aberta |
-| H2 | Cada critério = pergunta Score com 5 níveis (0–4), rubrica em [[JEV_RUBRIC]] | Aberta |
+| H2 | Cada critério = pergunta Score com 5 níveis (0–4), rubrica em [[JEV_RUBRIC]] | ✅ Validada no spike (3/3 faixas corretas em PT e EN) |
 | H3 | `confidence` do JEV é salvo, mas não usado na decisão | Aberta |
 | H4 | Exatamente 50% passa como 🟡 | Aberta |
 | H5 | Cada fase concluída gera `v0.<fase>.0`; MVP homologado = `v1.0.0` | Aberta |
 | H6 | Prompts com segredo **não** têm override | ✅ Confirmada → D38 |
+| H7 | Rubrica enviada ao JEV em **PT-BR** (mesma precisão do EN; EN usa ~12% menos tokens de entrada) | Aberta |

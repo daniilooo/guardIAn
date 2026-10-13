@@ -7,7 +7,7 @@
 |---|---|
 | **R1** | O guardIAn intercepta o prompt **antes** de a LLM recebê-lo. Nenhum prompt de projeto ativo chega à LLM sem passar pelo portão. |
 | **R13** | O hook roda em todo prompt, mas **só avalia se o projeto atual estiver ativo**. Projeto inativo → passa direto, sem registro e sem custo. |
-| **R14** | Comandos do próprio guardIAn (`/guardian-*`) **nunca** são avaliados nem barrados. |
+| **R14** | Comandos do próprio guardIAn (`/guardian-*`, inclusive na forma `/guardian:guardian-*`) **nunca** são avaliados: são **executados pelo próprio hook**, que responde com uma mensagem de confirmação e não envia nada à LLM (D42). |
 | **R15** | `/guardian-active` registra/ativa o projeto (vira aba). `/guardian-inactive` desativa o filtro, mantendo o histórico. |
 | **R9** | **Projeto** = diretório (`cwd`) da sessão do CLI; registrado automaticamente no `/guardian-active`. |
 
@@ -50,4 +50,4 @@
 | ⚪ JEV INDISPONÍVEL | cinza | ✅ | ✅ |
 
 ## Hipóteses ativas
-H1 (override também para <5 palavras) · H2 (rubrica de 5 níveis) · H3 (confidence salvo, não usado) · H4 (50% exato passa) · H5 (MVP = v1.0.0). Ver [[DECISION_LOG]].
+H1 (override também para <5 palavras) · H2 (rubrica de 5 níveis) · H3 (confidence salvo, não usado) · H4 (50% exato passa) · H5 (MVP = v1.0.0) · H7 (rubrica em PT-BR). Ver [[DECISION_LOG]].

@@ -50,9 +50,9 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] Verificado comportamento com servidor offline (fail-open)
   - [x] Descoberto: hook que estoura o timeout do CLI deixa o prompt passar → I11
   - [ ] Validação manual interativa: aparência da espera e Esc/Ctrl+C durante a retenção
-  - [ ] 1–3 chamadas reais ao JEV (G10) para medir latência e validar idioma da rubrica
-  - [x] Conclusões registradas em [[CLAUDE_CODE_HOOKS]] e ADR-0005 atualizado (falta [[TYPESAFE_JEV]])
-  - [ ] Decisão do engenheiro sobre tratar `/guardian-*` no hook (G2/G5)
+  - [x] Chamadas reais ao JEV (G10): latência 272–569 ms; rubrica acerta 3/3 em PT e EN
+  - [x] Conclusões registradas em [[CLAUDE_CODE_HOOKS]], [[TYPESAFE_JEV]] e ADR-0005 atualizado
+  - [x] Decisão do engenheiro: `/guardian-*` executados pelo hook (D42)
 - **Dependências:** Fase 1; chave TypeSafe no `.env` (para o item de JEV).
 - **Critérios de aceite:** todos os itens acima com evidência (log/print).
 - **DoD:** ADR-0005 confirmado ou regras R5/R14 revisadas com o engenheiro (G2).
