@@ -35,3 +35,6 @@ vault/.trash/
 
 # Spike (Fase 2)
 scripts/spike/*.jsonl
+
+# Token Saver local logs and settings
+/.token-saver/
