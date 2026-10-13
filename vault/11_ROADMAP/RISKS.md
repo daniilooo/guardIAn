@@ -4,7 +4,8 @@
 |---|---|---|---|---|---|
 | RK1 | Hook do Claude Code não suporta segurar 60s / liberar por sinal externo | ~~Média~~ **Mitigado** | Alto | Validado no spike (S5/S6) | 2 |
 | RK10 | Hook morto pelo timeout do CLI libera prompt barrado | Média | Alto | I11: relógio interno do hook < timeout; teste automatizado na Fase 6 | 6 |
-| RK11 | UI oferece override para prompt já descartado pelo CLI (Esc) | Alta | Médio | I12: encerrar retenção ao fechar a conexão; teste na Fase 5 | 5 |
+| RK11 | UI oferece override para prompt já descartado pelo CLI (Esc) | ~~Alta~~ **Mitigado** | Médio | I12 implementada e testada (Fase 5) | 5 |
+| RK12 | Segredo barrado permanece no histórico local de sessão do Claude Code (S15) | Alta | Médio | Documentar; mensagem de bloqueio recomenda revogar a credencial (pós-MVP) | Pós |
 | RK2 | Latência do JEV no caminho de cada prompt irrita o usuário | Média | Alto | Medir no spike; timeout `JEV_TIMEOUT_MS`; 1 chamada para 4 critérios | 2, 4 |
 | RK3 | Rubrica mal calibrada barra prompts bons (ou aprova ruins) | Alta | Alto | Exemplos-alvo, calibração com chamadas reais, ajuste na homologação | 4, 8 |
 | RK4 | Mensagens curtas de continuidade ("sim", "continue") sempre barradas pela regra de 5 palavras | Alta | Médio | Override (H1); observar na homologação; contexto de sessão no pós-MVP | 8 |

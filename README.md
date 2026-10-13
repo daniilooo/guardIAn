@@ -26,7 +26,7 @@ UI local em `http://127.0.0.1:7070`: abas por projeto, coluna com **todos** os p
 
 ## Como executar
 
-> O servidor já funciona (`pnpm start`, API em `/api/*`). Plugin e UI chegam nas Fases 6 e 7.
+> Servidor (`pnpm start`) e plugin do Claude Code já funcionam. A UI chega na Fase 7; até lá, o override é feito pela API.
 
 ```bash
 corepack enable          # habilita o pnpm (Node ≥ 22.18); sem sudo: corepack enable --install-directory ~/.local/bin
@@ -38,8 +38,7 @@ pnpm start               # http://127.0.0.1:7070
 No Claude Code, dentro do projeto que deseja filtrar:
 
 ```text
-/plugin marketplace add daniilooo/guardIAn
-/plugin install guardian
+/plugin install guardian --marketplace daniilooo/guardIAn
 /guardian-active         # liga o filtro neste projeto
 /guardian-inactive       # desliga
 ```

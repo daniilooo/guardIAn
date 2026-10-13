@@ -10,7 +10,7 @@
 | 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
 | 4 | Núcleo de avaliação | ✅ Concluído | v0.4.0 |
 | 5 | Servidor e persistência | ✅ Concluído | v0.5.0 |
-| 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
+| 6 | Plugin Claude Code | ✅ Concluído | v0.6.0 |
 | 7 | UI | ⬜ Não iniciado | v0.7.0 |
 | 8 | QA e Homologação | ⬜ Não iniciado | v0.8.0 |
 | 9 | MVP Release | ⬜ Não iniciado | **v1.0.0** |
@@ -94,15 +94,16 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] Contrato congelado em [[API_CONTRACTS]] e [[DATA_MODEL]]
 - **DoD:** contrato da API congelado para Fases 6 e 7.
 
-## FASE 6 — Plugin Claude Code
+## FASE 6 — Plugin Claude Code ✅
 - **Objetivo:** interceptação real, instalável.
 - **Escopo:** `plugins/claude-code` (manifest, hooks.json com timeout 75s, `hook.mjs` sem dependências, comandos `/guardian-active` / `/guardian-inactive`), `marketplace.json` na raiz, mensagens de terminal.
 - **Entregáveis:**
-  - [ ] Instalação via `/plugin marketplace add` + `/plugin install`
-  - [ ] allow / block / hold / fail-open testados (stdin simulado)
-  - [ ] Relógio interno do hook barra antes do timeout do CLI (I11)
-  - [ ] Comandos reconhecidos nas formas `/guardian-x` e `/guardian:guardian-x` (D42)
-  - [ ] Ativar/desativar projeto funcionando
+  - [x] Plugin e marketplace aprovados por `claude plugin validate`; instalação: `/plugin install guardian --marketplace daniilooo/guardIAn`
+  - [x] allow / block / hold / fail-open testados executando o `hook.mjs` real contra o servidor (12 testes)
+  - [x] Relógio interno do hook barra antes do timeout do CLI (I11) e o servidor registra `CANCELADO_NO_CLI`
+  - [x] Comandos reconhecidos nas formas `/guardian-x` e `/guardian:guardian-x` (D42)
+  - [x] Ativar/desativar projeto funcionando
+  - [x] Claude Code real (`--plugin-dir`): ativar, retenção + override via curl, ⚪ sem JEV e segredo
 - **Dependências:** Fase 5.
 - **DoD:** fluxo J2/J3/J4 funciona no Claude Code real (sem UI, override via `curl`).
 
