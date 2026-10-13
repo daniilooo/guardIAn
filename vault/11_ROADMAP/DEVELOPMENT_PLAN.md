@@ -7,8 +7,8 @@
 | 0 | Intake | ✅ Concluído | — |
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
 | 2 | Spike do portão | ✅ Concluído | v0.2.0 |
-| 3 | Fundação técnica | 🔄 Em andamento | v0.3.0 |
-| 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
+| 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
+| 4 | Núcleo de avaliação | ✅ Concluído | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
 | 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
 | 7 | UI | ⬜ Não iniciado | v0.7.0 |
@@ -58,7 +58,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **DoD:** ADR-0005 confirmado ou regras R5/R14 revisadas com o engenheiro (G2).
 - **Riscos:** hook não suportar espera longa → plano B: bloquear na hora + reenvio (opção "b" do intake).
 
-## FASE 3 — Fundação técnica
+## FASE 3 — Fundação técnica ✅
 - **Objetivo:** monorepo executável com qualidade automatizada.
 - **Escopo:** `pnpm-workspace.yaml`, `package.json` raiz, tsconfig base, ESLint, Prettier, Vitest, `packages/shared` (tipos, enums, constantes de negócio), lefthook, detector de segredos do pre-commit, GitHub Actions.
 - **Entregáveis:**
@@ -66,19 +66,20 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] `packages/shared` com status, motivos, constantes (5, 50, 75, 60, 68, 75), marcadores, contratos HTTP e padrões de segredo
   - [x] lefthook instalado (pre-commit, commit-msg, pre-push) — bloqueio de mensagem inválida e de segredo comprovados
   - [x] Esteira de CI e rulesets de `main`/`develop` (antecipado — D39/D40)
-  - [ ] Job `qualidade` executando de fato (ativa com o `package.json`)
+  - [x] Job `qualidade` executando de fato — confirmado no log do CI dos PRs #5 e #6 (46 testes)
 - **Dependências:** Fase 2 (contratos ajustados pelo spike).
 - **DoD:** pipeline local e CI verdes; hooks bloqueiam commit com `.env` ou segredo.
 - **Riscos:** `better-sqlite3` exigir toolchain nativa.
 
-## FASE 4 — Núcleo de avaliação
+## FASE 4 — Núcleo de avaliação ✅
 - **Objetivo:** domínio puro de decisão + adapter JEV.
 - **Escopo:** isenção `/guardian-*`, contagem de palavras, detecção e mascaramento de segredos, composição de nota e faixas, porta `Avaliador` com `AvaliadorJev` e `AvaliadorFake`, timeout/erros → indisponível.
 - **Entregáveis:**
-  - [ ] Funções de domínio com 100% dos casos de limite testados
-  - [ ] Padrões de segredo com testes positivos/negativos (fixtures sintéticas)
-  - [ ] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]]
-  - [ ] Rubrica calibrada com os 3 exemplos-alvo (chamadas reais com G10)
+  - [x] Funções de domínio com os casos de limite testados (comandos nas 2 formas, 4×5 palavras, 49,999/50/74,999/75, ordem I4) — teste de mutação confirma que pegam regressões
+  - [x] Padrões de segredo com testes positivos/negativos (fixtures sintéticas) + mascaramento com sobreposição
+  - [x] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]] (HTTP direto, D48) e `AvaliadorFake`
+  - [x] Rubrica calibrada com os 3 exemplos-alvo (spike, mesmo texto da rubrica de produção)
+  - [x] Smoke do adaptador de produção contra o JEV real: 🔴 39,3% · 🟡 61,6% · 🟢 94,8% (306–514 ms)
 - **DoD:** testes verdes sem rede; calibração registrada.
 - **Riscos:** rubrica mal calibrada; latência do JEV.
 

@@ -2,6 +2,8 @@
 
 > **Status: rascunho validado no spike (2026-10-12)** — 3/3 exemplos na faixa esperada, em PT e EN. Calibração fina na Fase 8. Alterar a rubrica é **gate humano** (G3).
 
+> Fonte executável: `apps/server/src/infra/jev/rubrica.ts` (deve ser idêntica a esta página).
+
 ## Como é usada
 Uma única chamada `POST /v1/systemone` com `state` = prompt (já mascarado) e **4 perguntas `score`** (rodam em paralelo no JEV). Cada critério tem **5 níveis (0–4)**. O JEV devolve `score` (valor esperado 0–4), `probabilities` e `confidence`.
 

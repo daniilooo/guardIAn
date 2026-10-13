@@ -6,7 +6,7 @@
 `apps/server`, `packages/shared`, `plugins/claude-code` (hook e comandos).
 
 ## Stack
-Node 22 LTS · TypeScript estrito · Fastify · SQLite (`better-sqlite3`) + Drizzle · SDK JS TypeSafe · Vitest.
+Node 22 LTS · TypeScript estrito · Fastify · SQLite (`better-sqlite3`) + Drizzle · JEV via HTTP direto (D48) · Vitest.
 
 ## Regras
 - Siga `.ai/workflow/IMPLEMENTACAO.md`.

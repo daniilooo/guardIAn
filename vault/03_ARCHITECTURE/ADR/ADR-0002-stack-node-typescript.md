@@ -15,3 +15,4 @@ O JEV tem SDKs oficiais em Python e JavaScript. O engenheiro priorizou uma lingu
 ## Consequências
 - ✅ Tipos compartilhados ponta a ponta; um único runtime.
 - ⚠️ `better-sqlite3` é nativo (compila no install).
+- 📝 Atualização (D48, Fase 4): o JEV é chamado por HTTP direto, sem o SDK JS.
