@@ -5,12 +5,12 @@
 |---|---|
 | Endpoint | `POST https://api.typesafe.ai/v1/systemone` |
 | Auth | `Authorization: Bearer $TYPESAFE_API_KEY` |
-| SDK | JavaScript oficial (`TypeSafeClient`, funções `score()`) |
+| Cliente | **HTTP direto** via `fetch` (D48) em `apps/server/src/infra/jev/avaliador-jev.ts` — SDK não usado |
 | Modelo | `JEV_MODEL` (padrão `jev-latest`) |
 | Primitiva usada | **Score** (4 perguntas numa chamada) |
 | Erros | 401 chave inválida · 422 validação · 429 rate limit · 529 sobrecarga |
 | Timeout | `JEV_TIMEOUT_MS` (padrão 10s) → ⚪ JEV INDISPONÍVEL |
-| Retry | SDK tem retry; limitar para caber no timeout total |
+| Retry | Nenhum: uma tentativa; falha → ⚪ JEV INDISPONÍVEL (R7) |
 | Custo | Créditos por chamada (`usage.input_tokens/output_tokens` registrados) |
 | Privacidade | Recebe o texto do prompt **já sem segredos** |
 

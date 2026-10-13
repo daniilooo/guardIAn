@@ -8,7 +8,7 @@
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
 | 2 | Spike do portão | ✅ Concluído | v0.2.0 |
 | 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
-| 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
+| 4 | Núcleo de avaliação | 🔄 Em andamento | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
 | 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
 | 7 | UI | ⬜ Não iniciado | v0.7.0 |
@@ -75,10 +75,11 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Objetivo:** domínio puro de decisão + adapter JEV.
 - **Escopo:** isenção `/guardian-*`, contagem de palavras, detecção e mascaramento de segredos, composição de nota e faixas, porta `Avaliador` com `AvaliadorJev` e `AvaliadorFake`, timeout/erros → indisponível.
 - **Entregáveis:**
-  - [ ] Funções de domínio com 100% dos casos de limite testados
-  - [ ] Padrões de segredo com testes positivos/negativos (fixtures sintéticas)
-  - [ ] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]]
-  - [ ] Rubrica calibrada com os 3 exemplos-alvo (chamadas reais com G10)
+  - [x] Funções de domínio com os casos de limite testados (comandos nas 2 formas, 4×5 palavras, 49,999/50/74,999/75, ordem I4) — teste de mutação confirma que pegam regressões
+  - [x] Padrões de segredo com testes positivos/negativos (fixtures sintéticas) + mascaramento com sobreposição
+  - [x] `AvaliadorJev` com as 4 perguntas Score da [[JEV_RUBRIC]] (HTTP direto, D48) e `AvaliadorFake`
+  - [x] Rubrica calibrada com os 3 exemplos-alvo (spike, mesmo texto da rubrica de produção)
+  - [ ] Smoke do adaptador de produção contra o JEV real (`apps/server/scripts/jev-smoke.ts`, G10)
 - **DoD:** testes verdes sem rede; calibração registrada.
 - **Riscos:** rubrica mal calibrada; latência do JEV.
 

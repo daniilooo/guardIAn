@@ -5,14 +5,14 @@ _Atualizado em: 2026-10-13_
 | Campo | Valor |
 |---|---|
 | Fase atual | **FASE 4 — Núcleo de avaliação** (Em andamento) |
-| Etapa atual | Implementando o domínio de avaliação e a porta Avaliador |
+| Etapa atual | Núcleo implementado e testado (115 testes); falta o smoke com JEV real (G10) |
 | Branch atual | `feature/4-nucleo-avaliacao` |
 | Última entrega | FASE 3 — Fundação técnica (`v0.3.0`) |
-| Última decisão | D45–D47 — TS 6.0, scripts em TS via Node puro, fonte única hook/CI |
+| Última decisão | D48 — JEV por HTTP direto, uma tentativa |
 | Tarefas em andamento | — |
 | Bloqueios | — |
 | Próxima ação | Concluir a Fase 4 |
-| Testes atuais | 46 testes (shared + scripts) verdes |
+| Testes atuais | 115 testes verdes |
 | Release atual | `v0.3.0` |
 
 ## Progresso por fase
