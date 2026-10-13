@@ -19,6 +19,8 @@ export type MotivoBloqueio = (typeof MOTIVO_BLOQUEIO)[keyof typeof MOTIVO_BLOQUE
 export const DECISAO_FINAL = {
   LIBERADO: 'LIBERADO',
   RETIDO: 'RETIDO',
+  /** Bloqueio definitivo, sem override (segredo — D38). */
+  BLOQUEADO: 'BLOQUEADO',
   DESCARTADO_TIMEOUT: 'DESCARTADO_TIMEOUT',
   CANCELADO: 'CANCELADO',
   CANCELADO_NO_CLI: 'CANCELADO_NO_CLI',

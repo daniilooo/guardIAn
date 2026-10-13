@@ -5,4 +5,6 @@ packages:
 
 # Dependências autorizadas a rodar scripts de instalação (pnpm bloqueia por padrão).
 allowBuilds:
+  better-sqlite3: true
+  esbuild: true
   lefthook: true

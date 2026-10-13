@@ -8,10 +8,10 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 ## Situação atual
 | | |
 |---|---|
-| **Versão** | `v0.3.0` |
-| **Fase** | ✅ Fase 4 concluída · ⏭️ **Fase 5 — Servidor e persistência** |
+| **Versão** | `v0.4.0` |
+| **Fase** | ✅ Fase 5 concluída · ⏭️ **Fase 6 — Plugin** ‖ **Fase 7 — UI** |
 | **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
-| **Próxima ação** | Fastify + SQLite + retenção 60s + SSE |
+| **Próxima ação** | Plugin do Claude Code sobre a API congelada |
 
 Detalhes: [[PROJECT_STATUS]].
 

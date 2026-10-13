@@ -4,16 +4,16 @@ _Atualizado em: 2026-10-13_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 5 — Servidor e persistência** (Não iniciado) |
-| Etapa atual | Fase 4 concluída — PR para `develop` aguardando merge |
-| Branch atual | `feature/4-nucleo-avaliacao` |
-| Última entrega | FASE 3 — Fundação técnica (`v0.3.0`) |
-| Última decisão | D48 — JEV por HTTP direto, uma tentativa |
+| Fase atual | **FASE 6 — Plugin Claude Code** (Não iniciado) |
+| Etapa atual | Fase 5 concluída — PR para `develop` |
+| Branch atual | `feature/5-servidor-persistencia` |
+| Última entrega | FASE 5 — Servidor e persistência |
+| Última decisão | D51–D58 (modelo de dados, comandos no servidor, segurança local) |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | Merge do PR → release `v0.4.0` → Fase 5 |
-| Testes atuais | 115 testes verdes |
-| Release atual | `v0.3.0` |
+| Próxima ação | Merge do PR → release `v0.5.0` → Fases 6 (plugin) e 7 (UI), que podem correr em paralelo |
+| Testes atuais | 138 testes verdes |
+| Release atual | `v0.4.0` |
 
 ## Progresso por fase
 | Fase | Status |
@@ -23,7 +23,7 @@ _Atualizado em: 2026-10-13_
 | 2 — Spike do portão | ✅ Concluído |
 | 3 — Fundação técnica | ✅ Concluído |
 | 4 — Núcleo de avaliação | ✅ Concluído |
-| 5 — Servidor e persistência | ⬜ Não iniciado |
+| 5 — Servidor e persistência | ✅ Concluído |
 | 6 — Plugin Claude Code | ⬜ Não iniciado |
 | 7 — UI | ⬜ Não iniciado |
 | 8 — QA e Homologação | ⬜ Não iniciado |

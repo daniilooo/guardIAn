@@ -26,7 +26,7 @@ UI local em `http://127.0.0.1:7070`: abas por projeto, coluna com **todos** os p
 
 ## Como executar
 
-> O servidor e a UI ainda não existem (Fases 5–7). O tooling já funciona: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
+> O servidor já funciona (`pnpm start`, API em `/api/*`). Plugin e UI chegam nas Fases 6 e 7.
 
 ```bash
 corepack enable          # habilita o pnpm (Node ≥ 22.18); sem sudo: corepack enable --install-directory ~/.local/bin

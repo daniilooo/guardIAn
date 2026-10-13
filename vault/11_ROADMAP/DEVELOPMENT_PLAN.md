@@ -9,7 +9,7 @@
 | 2 | Spike do portão | ✅ Concluído | v0.2.0 |
 | 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
 | 4 | Núcleo de avaliação | ✅ Concluído | v0.4.0 |
-| 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
+| 5 | Servidor e persistência | ✅ Concluído | v0.5.0 |
 | 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
 | 7 | UI | ⬜ Não iniciado | v0.7.0 |
 | 8 | QA e Homologação | ⬜ Não iniciado | v0.8.0 |
@@ -83,13 +83,15 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **DoD:** testes verdes sem rede; calibração registrada.
 - **Riscos:** rubrica mal calibrada; latência do JEV.
 
-## FASE 5 — Servidor e persistência
+## FASE 5 — Servidor e persistência ✅
 - **Objetivo:** API local completa.
 - **Escopo:** Fastify em `127.0.0.1`, config, SQLite + Drizzle + migrations, rotas de [[API_CONTRACTS]], retenção 60s com long-poll, override/cancelar, SSE, health do JEV.
 - **Entregáveis:**
-  - [ ] Todas as rotas com testes de integração (`inject`, SQLite em memória, fake)
-  - [ ] Retenção: expiração, override, cancelamento, override expirado (409), override em segredo (403), queda da conexão do hook → `CANCELADO_NO_CLI` (I12)
-  - [ ] Nada não mascarado em DB/log/SSE (teste)
+  - [x] Todas as rotas com testes de integração (`inject`, SQLite em memória, fake) — 23 testes
+  - [x] Retenção: expiração, override, cancelamento, override expirado (409), override em segredo (403), queda da conexão do hook → `CANCELADO_NO_CLI` (I12, com teste de mutação)
+  - [x] Nada não mascarado em DB/log/SSE (teste)
+  - [x] Ponta a ponta com o processo real (`pnpm start`) via curl
+  - [x] Contrato congelado em [[API_CONTRACTS]] e [[DATA_MODEL]]
 - **DoD:** contrato da API congelado para Fases 6 e 7.
 
 ## FASE 6 — Plugin Claude Code
