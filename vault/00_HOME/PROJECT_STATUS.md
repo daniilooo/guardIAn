@@ -4,14 +4,14 @@ _Atualizado em: 2026-10-12_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 2 — Spike do portão** (Não iniciado) |
-| Etapa atual | Aguardando o engenheiro iniciar |
-| Branch atual | `develop` |
-| Última entrega | FASE 1 — Bootstrap AI-Native |
-| Última decisão | D33 — segredo mascarado no SQLite |
+| Fase atual | **FASE 3 — Fundação técnica** (Não iniciado) |
+| Etapa atual | Fase 2 concluída — PR #3 aguardando merge |
+| Branch atual | `feature/2-spike-portao` |
+| Última entrega | FASE 2 — Spike do portão (hook validado, JEV medido) |
+| Última decisão | D44 — queda da conexão do hook encerra a retenção (I12) |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | Criar `feature/2-spike-portao` e validar o hook do Claude Code |
+| Próxima ação | Merge do PR #3 → PR `develop → main` + tag `v0.2.0` → iniciar Fase 3 |
 | Testes atuais | não há código ainda |
 | Release atual | — |
 
@@ -20,7 +20,7 @@ _Atualizado em: 2026-10-12_
 |---|---|
 | 0 — Intake | ✅ Concluído |
 | 1 — Bootstrap | ✅ Concluído |
-| 2 — Spike do portão | ⬜ Não iniciado |
+| 2 — Spike do portão | ✅ Concluído |
 | 3 — Fundação técnica | ⬜ Não iniciado |
 | 4 — Núcleo de avaliação | ⬜ Não iniciado |
 | 5 — Servidor e persistência | ⬜ Não iniciado |

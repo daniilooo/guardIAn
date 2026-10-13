@@ -36,7 +36,7 @@ erDiagram
     int input_tokens
     int output_tokens
     int latency_ms
-    text final_decision "LIBERADO | RETIDO | DESCARTADO_TIMEOUT | CANCELADO | AVALIADO_PLAYGROUND"
+    text final_decision "LIBERADO | RETIDO | DESCARTADO_TIMEOUT | CANCELADO | CANCELADO_NO_CLI | AVALIADO_PLAYGROUND"
     text decided_at
     text hold_expires_at
   }

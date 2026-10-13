@@ -10,6 +10,7 @@ Pré-requisitos: build de produção rodando (`pnpm start`), UI aberta em `http:
 | 4 | Não fazer nada por 60s | Prompt descartado; LLM não responde | ☐ |
 | 5 | Repetir 3 e clicar "Aprovar manualmente" → ver aviso → "Cancelar" | Descartado | ☐ |
 | 6 | Repetir 3 → "Aprovar manualmente" → "Enviar mesmo assim" | LLM responde; prompt 🔵 na coluna direita | ☐ |
+| 6b | Repetir 3 e pressionar **Esc** durante a espera | Prompt descartado; card muda para cancelado na hora; botão de override some | ☐ |
 | 7 | Enviar prompt mediano | 🟡 nas duas colunas; LLM responde | ☐ |
 | 8 | Enviar prompt completo (onde, o quê, resultado) | 🟢 nas duas colunas; LLM responde | ☐ |
 | 9 | Enviar prompt com chave sintética (`sk-ant-api03-...`) | 🔴🔒 SEGREDO DETECTADO; histórico mostra `[SEGREDO:...]`; sem botão de override; LLM não responde | ☐ |

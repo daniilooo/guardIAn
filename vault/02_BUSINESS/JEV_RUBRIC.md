@@ -1,6 +1,6 @@
 # Rubrica do JEV (rascunho — H2)
 
-> **Status: rascunho.** Será calibrada na Fase 4 (poucas chamadas reais, com autorização) e na Fase 8. Alterar a rubrica é **gate humano**.
+> **Status: rascunho validado no spike (2026-10-12)** — 3/3 exemplos na faixa esperada, em PT e EN. Calibração fina na Fase 8. Alterar a rubrica é **gate humano** (G3).
 
 ## Como é usada
 Uma única chamada `POST /v1/systemone` com `state` = prompt (já mascarado) e **4 perguntas `score`** (rodam em paralelo no JEV). Cada critério tem **5 níveis (0–4)**. O JEV devolve `score` (valor esperado 0–4), `probabilities` e `confidence`.
@@ -9,7 +9,7 @@ Uma única chamada `POST /v1/systemone` com `state` = prompt (já mascarado) e *
 nota_criterio = score / 4                      (0..1)
 nota_composta = média(4 critérios) × 100       (%)
 ```
-`confidence` é salvo, mas não decide nada no MVP (H3). Idioma das instruções (PT-BR × EN) a validar no spike/Fase 4.
+`confidence` é salvo, mas não decide nada no MVP (H3). Idioma: **PT-BR** (H7) — resultados equivalentes ao EN.
 
 ## C1 — Clareza do pedido
 Instrução: *"Quão claro e inequívoco é o pedido feito neste prompt para um assistente de programação?"*
@@ -52,8 +52,11 @@ Instrução: *"O prompt define o resultado esperado ou um critério para saber q
 | 4 | Resultado claro e verificável (comportamento, saída, teste, critério de aceite) |
 
 ## Exemplos de calibração (alvo)
-| Prompt | Faixa esperada |
-|---|---|
-| "arruma o bug do login por favor" | 🔴 |
-| "No arquivo `auth.ts`, corrija a validação de email do login" | 🟡 |
-| "Em `apps/server/src/auth.ts`, na função `validateEmail`, rejeite emails sem domínio. Esperado: `a@` retorna 400 e o teste `auth.test.ts` passa." | 🟢 |
+| Prompt | Esperada | Spike PT | Spike EN |
+|---|---|---|---|
+| "arruma o bug do login por favor" | 🔴 | 🔴 39% | 🔴 39% |
+| "No arquivo `auth.ts`, corrija a validação de email do login" | 🟡 | 🟡 62% | 🟡 59% |
+| "Em `apps/server/src/auth.ts`, na função `validateEmail`, rejeite emails sem domínio. Esperado: `a@` retorna 400 e o teste `auth.test.ts` passa." | 🟢 | 🟢 95% | 🟢 94% |
+
+Notas por critério (PT): 🔴 clareza 0,42 · onde 0,49 · o quê 0,37 · resultado 0,29 — 🟡 0,55 · 1,00 · 0,61 · 0,30 — 🟢 0,84 · 1,00 · 0,94 · 1,00.
+Observação para calibração: "login" sozinho já rende ~0,49 em *Onde mexer* (nível "área geral").

@@ -10,7 +10,7 @@
 | JEV real | Script manual, poucas chamadas, com G10 | Calibração da rubrica | Fases 4 e 8 |
 
 ## Casos de limite obrigatórios
-4 × 5 palavras · 49,9% × 50% · 74,9% × 75% · retenção expirando em 60s · override após expiração (409) · override em segredo (403) · JEV timeout/429/529/401 → ⚪ · segredo em prompt curto (segredo vence, I4) · `/guardian-active` com projeto já ativo.
+4 × 5 palavras · 49,9% × 50% · 74,9% × 75% · retenção expirando em 60s · override após expiração (409) · override em segredo (403) · JEV timeout/429/529/401 → ⚪ · segredo em prompt curto (segredo vence, I4) · `/guardian-active` com projeto já ativo · `/guardian:guardian-active` (forma com namespace) · conexão de espera fechada pelo cliente → `CANCELADO_NO_CLI` (I12) · hook com relógio interno barrando antes do timeout do CLI (I11).
 
 ## Regra de ouro
 CI e testes automatizados **nunca** chamam a TypeSafe (I10).

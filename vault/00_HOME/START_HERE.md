@@ -9,9 +9,9 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 | | |
 |---|---|
 | **Versão** | nenhuma release (pré-`v0.2.0`) |
-| **Fase** | ✅ Fase 1 — Bootstrap concluída · ⏭️ **Fase 2 — Spike do portão** |
-| **Última decisão** | Segredos detectados são salvos **mascarados** no SQLite (D33) |
-| **Próxima ação** | Executar o spike do hook `UserPromptSubmit` no Claude Code real |
+| **Fase** | ✅ Fase 2 — Spike concluída · ⏭️ **Fase 3 — Fundação técnica** |
+| **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
+| **Próxima ação** | Fase 3: tooling do monorepo (pnpm, TS, ESLint, Prettier, Vitest, lefthook) |
 
 Detalhes: [[PROJECT_STATUS]].
 
