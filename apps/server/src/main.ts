@@ -1,4 +1,5 @@
 // Ponto de entrada: `pnpm start` (Node puro, type stripping). Compõe as dependências.
+import { fileURLToPath } from 'node:url';
 import { RETENCAO_SEGUNDOS } from '@guardian/shared';
 import { criarEventos } from './aplicacao/eventos.ts';
 import { criarServico } from './aplicacao/servico.ts';
@@ -28,6 +29,7 @@ const app = criarApp({
   eventos,
   hostsPermitidos: [`${config.host}:${config.porta}`, `localhost:${config.porta}`],
   logger: { level: config.nivelLog },
+  pastaWeb: fileURLToPath(new URL('../../web/dist', import.meta.url)),
 });
 
 const orfas = servico.descartarRetencoesOrfas();

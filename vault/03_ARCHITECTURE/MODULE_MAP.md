@@ -14,8 +14,12 @@ guardIAn/
 │   │       │   └── sse/
 │   │       └── config.ts       leitura de env (única)
 │   │   └── scripts/            jev-smoke.ts (manual, G10)
-│   └── web/                    React + Vite + Tailwind
-│       └── src/ (abas, colunas, card de prompt, barras, modal override, playground, banner JEV)
+│   └── web/                    React + Vite + Tailwind (servida pelo Fastify em produção)
+│       └── src/
+│           ├── logica.ts       regras puras da UI (marcadores, colunas, contador)
+│           ├── api.ts          cliente da API
+│           ├── usarGuardian.ts estado: REST + SSE com reconexão
+│           └── componentes/    Abas, Coluna, CartaoPrompt, BarrasCriterios, Marcador, ModalOverride, Playground
 ├── packages/
 │   └── shared/                 tipos, enums de status/motivo, constantes de negócio, contratos HTTP, padrões de segredo
 ├── plugins/

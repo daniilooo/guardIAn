@@ -4,6 +4,11 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
 
+## [0.7.0] — UI
+### Adicionado
+- UI web (React + Vite + Tailwind) em `http://127.0.0.1:7070`: abas por projeto e Playground, colunas Todos × Liberados, marcadores, 4 barras por critério, override com contador de 60s, banner de JEV indisponível, tempo real via SSE.
+- Servidor serve a UI compilada; `pnpm start` compila antes de subir.
+
 ## [0.6.0] — Plugin Claude Code
 ### Adicionado
 - Plugin `guardian` (`plugins/claude-code`): hook `UserPromptSubmit` sem dependências, comandos `/guardian-active` e `/guardian-inactive`.
