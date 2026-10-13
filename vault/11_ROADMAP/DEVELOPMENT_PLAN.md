@@ -62,7 +62,8 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [ ] `pnpm install && pnpm lint && pnpm typecheck && pnpm test && pnpm build` verdes
   - [ ] `packages/shared` com status, motivos, constantes (5, 50, 75, 60) e contratos HTTP
   - [ ] lefthook instalado (pre-commit, commit-msg, pre-push)
-  - [ ] CI verde num PR
+  - [x] Esteira de CI e rulesets de `main`/`develop` (antecipado — D39/D40)
+  - [ ] Job `qualidade` executando de fato (ativa com o `package.json`)
 - **Dependências:** Fase 2 (contratos ajustados pelo spike).
 - **DoD:** pipeline local e CI verdes; hooks bloqueiam commit com `.env`.
 - **Riscos:** `better-sqlite3` exigir toolchain nativa.

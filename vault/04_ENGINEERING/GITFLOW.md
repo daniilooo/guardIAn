@@ -18,13 +18,14 @@ gitGraph
 | Item | Decisão |
 |---|---|
 | Remoto | GitHub `git@github.com:daniilooo/guardIAn.git` |
-| Branches | `main`, `develop`, `feature/*`, `fix/*`, `hotfix/*`, `release/*` (opcional) |
+| Branches | `main`, `develop`, `feature/*`, `fix/*`, `hotfix/*` |
 | Commits | Conventional Commits em PT-BR |
 | Merge feature → develop | squash |
-| Merge develop → main | merge commit + tag |
+| Merge develop → main | merge commit + tag — **main só aceita PR vindo de `develop`** |
+| Hotfix | sai de `main`, PR para `develop`, depois `develop → main` |
 | Versionamento | SemVer; fase concluída → `v0.<fase>.0` (sugestão); MVP → `v1.0.0` |
 | Revisão | Engenheiro revisa sozinho; Reviewer (IA) faz pré-revisão |
-| Proteção (recomendada) | `main` e `develop` sem push direto; CI obrigatório no PR |
+| Proteção (ativa) | rulesets no GitHub: sem push direto/force push/exclusão em `main` e `develop`; PR + CI obrigatórios ([[CI_CD]]) |
 
 ## Permissões da LLM
 | Ação | Permissão |
