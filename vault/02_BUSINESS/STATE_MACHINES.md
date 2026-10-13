@@ -4,7 +4,7 @@
 ```mermaid
 stateDiagram-v2
   [*] --> Recebido
-  Recebido --> Ignorado: /guardian-* (R14)
+  Recebido --> ExecutadoPeloHook: /guardian-* (R14)
   Recebido --> PassaDireto: projeto inativo (R13)
   Recebido --> BarradoSegredo: segredo detectado (R16)
   Recebido --> Retido: < 5 palavras (R2)
@@ -15,13 +15,14 @@ stateDiagram-v2
   Retido --> Liberado: Enviar mesmo assim (🔵)
   Retido --> Descartado: Cancelar
   Retido --> Descartado: 60s sem decisão
+  Retido --> Descartado: Esc/Ctrl+C no CLI (I12)
   BarradoSegredo --> Descartado
-  Ignorado --> [*]
+  ExecutadoPeloHook --> [*]
   PassaDireto --> [*]
   Liberado --> [*]
   Descartado --> [*]
 ```
-`Ignorado` e `PassaDireto` **não** são persistidos.
+`ExecutadoPeloHook` e `PassaDireto` **não** são persistidos como prompts. O comando altera apenas o estado do projeto.
 
 ## Prompt do playground
 ```mermaid

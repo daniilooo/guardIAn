@@ -32,3 +32,6 @@ vault/.trash/
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
+
+# Spike (Fase 2)
+scripts/spike/*.jsonl
