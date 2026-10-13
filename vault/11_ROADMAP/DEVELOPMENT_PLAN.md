@@ -7,7 +7,7 @@
 | 0 | Intake | ✅ Concluído | — |
 | 1 | Bootstrap AI-Native | ✅ Concluído | — |
 | 2 | Spike do portão | ✅ Concluído | v0.2.0 |
-| 3 | Fundação técnica | 🔄 Em andamento | v0.3.0 |
+| 3 | Fundação técnica | ✅ Concluído | v0.3.0 |
 | 4 | Núcleo de avaliação | ⬜ Não iniciado | v0.4.0 |
 | 5 | Servidor e persistência | ⬜ Não iniciado | v0.5.0 |
 | 6 | Plugin Claude Code | ⬜ Não iniciado | v0.6.0 |
@@ -58,7 +58,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **DoD:** ADR-0005 confirmado ou regras R5/R14 revisadas com o engenheiro (G2).
 - **Riscos:** hook não suportar espera longa → plano B: bloquear na hora + reenvio (opção "b" do intake).
 
-## FASE 3 — Fundação técnica
+## FASE 3 — Fundação técnica ✅
 - **Objetivo:** monorepo executável com qualidade automatizada.
 - **Escopo:** `pnpm-workspace.yaml`, `package.json` raiz, tsconfig base, ESLint, Prettier, Vitest, `packages/shared` (tipos, enums, constantes de negócio), lefthook, detector de segredos do pre-commit, GitHub Actions.
 - **Entregáveis:**
@@ -66,7 +66,7 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] `packages/shared` com status, motivos, constantes (5, 50, 75, 60, 68, 75), marcadores, contratos HTTP e padrões de segredo
   - [x] lefthook instalado (pre-commit, commit-msg, pre-push) — bloqueio de mensagem inválida e de segredo comprovados
   - [x] Esteira de CI e rulesets de `main`/`develop` (antecipado — D39/D40)
-  - [ ] Job `qualidade` executando de fato (ativa com o `package.json`)
+  - [x] Job `qualidade` executando de fato — confirmado no log do CI dos PRs #5 e #6 (46 testes)
 - **Dependências:** Fase 2 (contratos ajustados pelo spike).
 - **DoD:** pipeline local e CI verdes; hooks bloqueiam commit com `.env` ou segredo.
 - **Riscos:** `better-sqlite3` exigir toolchain nativa.
