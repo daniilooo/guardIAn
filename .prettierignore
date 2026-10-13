@@ -7,3 +7,4 @@ docs/
 scripts/spike/
 coverage/
 dist/
+apps/server/drizzle/
