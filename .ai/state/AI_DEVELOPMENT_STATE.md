@@ -4,25 +4,25 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 3 — Fundação técnica** (não iniciada) |
-| Etapa atual | Fase 2 concluída; PR #3 aguardando merge |
-| Branch atual | `feature/2-spike-portao` (PR aberto para develop) |
+| Fase atual | **FASE 3 — Fundação técnica** (em andamento) |
+| Etapa atual | Tooling verde localmente; PR para develop |
+| Branch atual | `feature/3-fundacao-tecnica` |
 | Última entrega | Fase 2 — Spike do portão (PR #3) |
-| Última decisão | D44 — queda da conexão do hook encerra a retenção (I12) |
+| Última decisão | D45–D47 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | Após merge: PR develop→main + tag v0.2.0 (humano); iniciar Fase 3 em `feature/3-fundacao-tecnica` |
-| Testes atuais | não há código |
-| Release atual | nenhuma tag ainda (proposta: `v0.2.0`) |
+| Próxima ação | CI verde no PR da Fase 3 → merge (humano) → `v0.3.0` → Fase 4 |
+| Testes atuais | 46 testes verdes (`pnpm test`) |
+| Release atual | `v0.2.0` |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
-- **Data/ferramenta:** 2026-10-12 — Claude Code (Opus)
-- **Contexto:** Fase 2 (Spike do portão) concluída. Hook `UserPromptSubmit` validado em modo `-p` (T1–T7) e interativo (espera de 60s, Esc, comando com namespace). JEV medido.
-- **Estado:** branch `feature/2-spike-portao`, PR #3 para `develop` aberto; nenhum código de produto ainda.
-- **Alterações:** `scripts/spike/*` (descartável), knowledge (hooks, JEV), ADR-0005, invariantes I11/I12, R14, máquina de estados, modelo de dados, testes, roadmap, riscos, CHANGELOG.
-- **Decisões:** D42 (comandos no hook), D43 (I11), D44 (I12). H2 validada; H7 (rubrica PT-BR) aberta.
-- **Pendências:** merge do PR #3 e release `v0.2.0` (humano).
-- **Próximo passo:** Fase 3 — `pnpm-workspace.yaml`, `package.json` raiz (`packageManager: pnpm@12.11.2`, `engines.node >=22`), tsconfig base, ESLint, Prettier, Vitest, `packages/shared` (status, motivos, constantes 5/50/75/60, contratos), lefthook, check-secrets reaproveitando os padrões de `scripts/ci/check-secrets.sh`. O job `qualidade` do CI ativa sozinho quando o `package.json` existir.
-- **Arquivos relevantes:** `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-3`, `.ai/hooks/README.md`, `vault/06_INFRASTRUCTURE/CI_CD.md`, `vault/15_KNOWLEDGE/CLAUDE_CODE_HOOKS.md`.
+- **Data/ferramenta:** 2026-10-13 — Claude Code (Opus)
+- **Contexto:** Fase 3 — fundação técnica do monorepo.
+- **Estado:** pnpm 12 workspaces, TS 6.0, ESLint 10 (flat), Prettier, Vitest 5, lefthook 2. `packages/shared` com constantes de negócio, domínio, contratos HTTP e padrões de segredo. Scripts `check-secrets.ts` e `check-commit-msg.ts` (Node puro) usados pelo lefthook e pelo CI. 46 testes verdes. Hooks comprovadamente bloqueiam mensagem inválida e segredo.
+- **Alterações:** raiz (`package.json`, `pnpm-workspace.yaml`, `tsconfig*.json`, `eslint.config.js`, `.prettier*`, `vitest.config.ts`, `lefthook.yml`), `packages/shared/*`, `scripts/check-*.ts`, CI, docs.
+- **Decisões:** D45 (TS 6.0, TD2), D46 (scripts TS via Node puro), D47 (fonte única hook/CI).
+- **Pendências:** CI verde no PR; merge e release `v0.3.0` (humano).
+- **Próximo passo:** Fase 4 — núcleo de avaliação em `apps/server/src/dominio/` (isenção/comandos nas duas formas, contagem de palavras, mascaramento de segredos, nota composta e faixas) + porta `Avaliador` com `AvaliadorJev` (HTTP direto ou SDK) e `AvaliadorFake`.
+- **Arquivos relevantes:** `packages/shared/src/*`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-4`, `vault/02_BUSINESS/JEV_RUBRIC.md`, `scripts/spike/jev-latency.mjs` (referência de chamada HTTP).

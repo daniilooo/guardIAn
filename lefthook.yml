@@ -1,0 +1,22 @@
+# Hooks de desenvolvimento — especificação em .ai/hooks/README.md (não confundir com o hook do produto).
+pre-commit:
+  parallel: true
+  jobs:
+    - name: format
+      glob: '*.{ts,tsx,js,mjs,json,yml,yaml,css,html}'
+      run: pnpm exec prettier --check --ignore-unknown {staged_files}
+    - name: lint
+      glob: '*.{ts,tsx,js,mjs}'
+      run: pnpm exec eslint --no-warn-ignored {staged_files}
+    - name: secrets
+      run: node scripts/check-secrets.ts --staged
+
+commit-msg:
+  jobs:
+    - name: conventional-commits
+      run: node scripts/check-commit-msg.ts {1}
+
+pre-push:
+  jobs:
+    - name: typecheck-test-build
+      run: pnpm typecheck && pnpm test && pnpm build

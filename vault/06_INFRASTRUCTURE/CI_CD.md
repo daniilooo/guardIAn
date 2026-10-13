@@ -5,12 +5,12 @@ Gatilhos: PR para `develop`/`main` (abrir, atualizar, editar título) e push pó
 
 | Job (check obrigatório) | O que faz |
 |---|---|
-| `politica-de-branch` | PR para `main` só se a origem for `develop`; título de PR para `develop` em Conventional Commits (vira a mensagem do squash) |
-| `seguranca` | `scripts/ci/check-secrets.sh`: falha com `.env` versionado ou padrão de segredo; o log mostra só `arquivo:linha` |
-| `qualidade` | `pnpm install --frozen-lockfile` → `lint` → `typecheck` → `test` → `build`. **Pulado automaticamente enquanto não existir `package.json`** (ativa sozinho na Fase 3) |
+| `politica-de-branch` | PR para `main` só se a origem for `develop`; título de PR para `develop` validado por `scripts/check-commit-msg.ts` (vira a mensagem do squash) |
+| `seguranca` | `scripts/check-secrets.ts` (padrões de `packages/shared`): falha com `.env` versionado ou segredo; o log mostra só `arquivo:linha:tipo` |
+| `qualidade` | `pnpm install --frozen-lockfile` → `format:check` → `lint` → `typecheck` → `test` → `build` (ativo desde a Fase 3) |
 
 - Sem secrets no workflow; `TYPESAFE_API_KEY` vazio no CI (I10).
-- Node pela `.nvmrc`; pnpm pelo campo `packageManager` (Fase 3).
+- Node pela `.nvmrc`; pnpm pelo campo `packageManager` (`pnpm@12.11.2`).
 
 ## Regras de branch (GitHub rulesets)
 | Ruleset | Alvo | Regras |

@@ -30,17 +30,17 @@ jobs:
             exit 1
           fi
           echo "Origem válida: develop -> main"
+      - uses: actions/checkout@v4
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+      - uses: actions/setup-node@v4
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop'
+        with:
+          node-version-file: .nvmrc
       - name: Título do PR em Conventional Commits
         if: github.event_name == 'pull_request' && github.base_ref == 'develop'
         env:
           TITLE: ${{ github.event.pull_request.title }}
-        run: |
-          if ! printf '%s' "$TITLE" | grep -Eq '^(feat|fix|docs|test|refactor|chore|ci|build|perf)(\([a-z0-9-]+\))?!?: .{1,72}$'; then
-            echo "::error::Título do PR fora do padrão Conventional Commits: '$TITLE'"
-            echo "Exemplo: feat(server): adiciona rota de avaliação"
-            exit 1
-          fi
-          echo "Título válido: $TITLE"
+        run: node scripts/check-commit-msg.ts --text "$TITLE"
       - name: Push direto (apenas informativo)
         if: github.event_name == 'push'
         run: echo "Execução pós-merge em ${{ github.ref_name }}."
@@ -49,8 +49,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
       - name: Bloquear arquivos .env e segredos versionados
-        run: bash scripts/ci/check-secrets.sh
+        run: node scripts/check-secrets.ts
 
   qualidade:
     runs-on: ubuntu-latest
@@ -73,6 +76,9 @@ jobs:
       - name: Instalar dependências
         if: steps.detect.outputs.enabled == 'true'
         run: pnpm install --frozen-lockfile
+      - name: Formatação
+        if: steps.detect.outputs.enabled == 'true'
+        run: pnpm format:check
       - name: Lint
         if: steps.detect.outputs.enabled == 'true'
         run: pnpm lint
@@ -82,7 +88,7 @@ jobs:
       - name: Testes (sem JEV real)
         if: steps.detect.outputs.enabled == 'true'
         env:
-          TYPESAFE_API_KEY: ""
+          TYPESAFE_API_KEY: ''
         run: pnpm test
       - name: Build
         if: steps.detect.outputs.enabled == 'true'
