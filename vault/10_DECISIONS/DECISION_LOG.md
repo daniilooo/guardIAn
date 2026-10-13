@@ -60,6 +60,9 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D45 | TypeScript 6.0 (não 7) por compatibilidade com typescript-eslint (TD2); `@types/node` 22 | Claude (Fase 3) |
 | D46 | Scripts de tooling em TypeScript executados pelo Node puro (type stripping); `engines.node >= 22.18` | Claude (Fase 3) |
 | D47 | Detector de segredos e validador de commit são fonte única para hook **e** CI; `scripts/ci/check-secrets.sh` removido | Claude (Fase 3) |
+| D48 | JEV chamado por **HTTP direto** (sem SDK), uma única tentativa com `JEV_TIMEOUT_MS`: sem dependência nova e tempo total previsível dentro do prazo do hook (I11) | Claude (Fase 4) |
+| D49 | `/guardian-<desconhecido>` também nunca é avaliado (R14); o hook responderá com a lista de comandos válidos | Claude (Fase 4) |
+| D50 | A faixa usa a nota composta **sem arredondamento** (49,999 é barrado); arredondamento só na exibição | Claude (Fase 4) |
 
 ## Hipóteses (confirmar ou derrubar)
 | # | Hipótese | Status |

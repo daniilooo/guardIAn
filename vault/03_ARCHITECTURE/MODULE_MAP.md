@@ -9,10 +9,11 @@ guardIAn/
 │   │       ├── aplicacao/      casos de uso
 │   │       ├── dominio/        regras puras (isenção, palavras, segredos, nota, faixa)
 │   │       ├── infra/
-│   │       │   ├── jev/        AvaliadorJev (único lugar que importa o SDK TypeSafe)
+│   │       │   ├── jev/        AvaliadorJev (único lugar que fala com a TypeSafe), AvaliadorFake, rubrica
 │   │       │   ├── db/         schema Drizzle, migrations, repositórios
 │   │       │   └── sse/
 │   │       └── config.ts       leitura de env (única)
+│   │   └── scripts/            jev-smoke.ts (manual, G10)
 │   └── web/                    React + Vite + Tailwind
 │       └── src/ (abas, colunas, card de prompt, barras, modal override, playground, banner JEV)
 ├── packages/
@@ -27,6 +28,6 @@ guardIAn/
 
 ## Regras de dependência
 - `dominio/` não importa nada de `infra/`, `http/` nem do SDK.
-- Somente `infra/jev/` importa o SDK TypeSafe.
+- Somente `infra/jev/` fala com a API TypeSafe.
 - `web` e `plugin` dependem só de `shared` e da API HTTP — nunca de `server` diretamente.
 - Somente `config.ts` lê `process.env`.

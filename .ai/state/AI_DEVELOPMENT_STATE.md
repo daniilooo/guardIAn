@@ -4,25 +4,25 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 3 — Fundação técnica** (em andamento) |
-| Etapa atual | Tooling verde localmente; PR para develop |
-| Branch atual | `feature/3-fundacao-tecnica` |
-| Última entrega | Fase 2 — Spike do portão (PR #3) |
-| Última decisão | D45–D47 |
+| Fase atual | **FASE 4 — Núcleo de avaliação** (em andamento) |
+| Etapa atual | Fase 4 concluída; PR para develop |
+| Branch atual | `feature/4-nucleo-avaliacao` (local) |
+| Última entrega | Fase 3 — `v0.3.0` |
+| Última decisão | D48–D50 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | CI verde no PR da Fase 3 → merge (humano) → `v0.3.0` → Fase 4 |
-| Testes atuais | 46 testes verdes (`pnpm test`) |
-| Release atual | `v0.2.0` |
+| Próxima ação | Smoke do JEV (G10) → push/PR (G8) → `v0.4.0` → Fase 5 |
+| Testes atuais | 115 testes verdes (`pnpm test`) |
+| Release atual | `v0.3.0` |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
 - **Data/ferramenta:** 2026-10-13 — Claude Code (Opus)
-- **Contexto:** Fase 3 — fundação técnica do monorepo.
-- **Estado:** pnpm 12 workspaces, TS 6.0, ESLint 10 (flat), Prettier, Vitest 5, lefthook 2. `packages/shared` com constantes de negócio, domínio, contratos HTTP e padrões de segredo. Scripts `check-secrets.ts` e `check-commit-msg.ts` (Node puro) usados pelo lefthook e pelo CI. 46 testes verdes. Hooks comprovadamente bloqueiam mensagem inválida e segredo.
-- **Alterações:** raiz (`package.json`, `pnpm-workspace.yaml`, `tsconfig*.json`, `eslint.config.js`, `.prettier*`, `vitest.config.ts`, `lefthook.yml`), `packages/shared/*`, `scripts/check-*.ts`, CI, docs.
-- **Decisões:** D45 (TS 6.0, TD2), D46 (scripts TS via Node puro), D47 (fonte única hook/CI).
-- **Pendências:** CI verde no PR; merge e release `v0.3.0` (humano).
-- **Próximo passo:** Fase 4 — núcleo de avaliação em `apps/server/src/dominio/` (isenção/comandos nas duas formas, contagem de palavras, mascaramento de segredos, nota composta e faixas) + porta `Avaliador` com `AvaliadorJev` (HTTP direto ou SDK) e `AvaliadorFake`.
-- **Arquivos relevantes:** `packages/shared/src/*`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-4`, `vault/02_BUSINESS/JEV_RUBRIC.md`, `scripts/spike/jev-latency.mjs` (referência de chamada HTTP).
+- **Contexto:** Fase 4 — núcleo de avaliação.
+- **Estado:** `apps/server` criado (sem Fastify ainda). Domínio puro: `dominio/comandos.ts` (2 formas + desconhecido), `palavras.ts`, `segredos.ts` (mascaramento com sobreposição), `nota.ts` (normalização, composta, faixa). Aplicação: porta `Avaliador` e `avaliarPrompt` (ordem I4) + `permiteOverride`. Infra: `AvaliadorJev` (HTTP direto, D48), `AvaliadorFake`, `rubrica.ts`. 115 testes; mutações de limite e ordem são detectadas.
+- **Alterações:** `apps/server/**`, docs (plano, decisões D48–D50, integrações, módulos, rubrica, agente backend).
+- **Decisões:** D48 (HTTP direto), D49 (comando desconhecido não avaliado), D50 (faixa sem arredondamento).
+- **Pendências:** merge do PR e release `v0.4.0` (humano). Smoke com JEV real executado: 3/3 faixas corretas.
+- **Próximo passo:** Fase 5 — Fastify em 127.0.0.1, config.ts, SQLite + Drizzle, rotas de API_CONTRACTS, retenção 60s com long-poll e I12 (close da conexão), SSE, health.
+- **Arquivos relevantes:** `apps/server/src/aplicacao/avaliar-prompt.ts`, `vault/03_ARCHITECTURE/API_CONTRACTS.md`, `vault/03_ARCHITECTURE/DATA_MODEL.md`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-5`.

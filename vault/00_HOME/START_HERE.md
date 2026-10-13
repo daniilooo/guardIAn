@@ -8,10 +8,10 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 ## Situação atual
 | | |
 |---|---|
-| **Versão** | nenhuma release (pré-`v0.2.0`) |
-| **Fase** | ✅ Fase 2 — Spike concluída · ⏭️ **Fase 3 — Fundação técnica** |
+| **Versão** | `v0.3.0` |
+| **Fase** | ✅ Fase 4 concluída · ⏭️ **Fase 5 — Servidor e persistência** |
 | **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
-| **Próxima ação** | Fase 3: tooling do monorepo (pnpm, TS, ESLint, Prettier, Vitest, lefthook) |
+| **Próxima ação** | Fastify + SQLite + retenção 60s + SSE |
 
 Detalhes: [[PROJECT_STATUS]].
 
