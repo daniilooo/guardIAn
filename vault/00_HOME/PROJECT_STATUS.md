@@ -4,14 +4,14 @@ _Atualizado em: 2026-10-13_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 8 — QA e Homologação** (Em andamento) |
-| Etapa atual | QA concluído (F1–F3 corrigidos); aguardando homologação do engenheiro |
+| Fase atual | **FASE 9 — MVP Release** (Não iniciado) |
+| Etapa atual | Homologação aprovada — PR da Fase 8 para `develop` |
 | Branch atual | `feature/8-qa-homologacao` |
-| Última entrega | FASE 6 (plugin) e FASE 7 (UI) |
+| Última entrega | FASE 8 — QA e Homologação (aprovada) |
 | Última decisão | D68–D69 (loopback imposto; erro HTTP no hook) |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | PR das correções → main → engenheiro executa o HOMOLOGATION_SCRIPT |
+| Próxima ação | Merge → release `v0.8.0` → Fase 9: checar a Definition of MVP Done e lançar `v1.0.0` |
 | Testes atuais | 191 testes verdes |
 | Release atual | `v0.7.0` |
 
@@ -26,7 +26,7 @@ _Atualizado em: 2026-10-13_
 | 5 — Servidor e persistência | ✅ Concluído |
 | 6 — Plugin Claude Code | ✅ Concluído (`v0.6.0`) |
 | 7 — UI | ✅ Concluído (`v0.7.0`) |
-| 8 — QA e Homologação | 🔄 Em andamento |
+| 8 — QA e Homologação | ✅ Concluído |
 | 9 — MVP Release `v1.0.0` | ⬜ Não iniciado |
 
 ## Pendências abertas

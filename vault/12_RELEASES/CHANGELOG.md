@@ -3,6 +3,11 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
+
+## [0.8.0] — QA e Homologação
+### Adicionado
+- Relatório de QA e security review; roteiro de homologação com comandos prontos.
+- Homologação do MVP aprovada pelo engenheiro.
 ### Corrigido
 - Servidor recusa `GUARDIAN_HOST` fora de loopback (segurança).
 - Hook mostra o erro real quando o servidor recusa a avaliação, em vez de "offline".
