@@ -49,18 +49,25 @@ const corpo = {
   ...(entrada.prompt_id ? { prompt_id: String(entrada.prompt_id) } : {}),
 };
 
-let resposta;
+let http;
 try {
-  const r = await fetch(`${BASE}/api/hook/prompt`, {
+  http = await fetch(`${BASE}/api/hook/prompt`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(corpo),
     signal: AbortSignal.timeout(Math.min(TIMEOUT_AVALIACAO_MS, restante())),
   });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  resposta = await r.json();
 } catch {
   liberar(MENSAGEM_OFFLINE); // R17 — fail-open com aviso
+}
+// Servidor no ar, mas recusou a avaliação (ex.: prompt grande demais): fail-open com o motivo real.
+if (!http.ok) liberar(`⚠️ guardIAn: erro ao avaliar (HTTP ${http.status}): prompt não avaliado`);
+
+let resposta;
+try {
+  resposta = await http.json();
+} catch {
+  liberar('⚠️ guardIAn: resposta inválida do servidor: prompt não avaliado');
 }
 
 if (resposta.action === 'allow') liberar(resposta.message);

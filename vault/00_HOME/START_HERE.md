@@ -8,10 +8,10 @@ O guardIAn é um **portão de qualidade para prompts**: intercepta o prompt **an
 ## Situação atual
 | | |
 |---|---|
-| **Versão** | `v0.5.0` |
-| **Fase** | ✅ Fases 6 e 7 concluídas · ⏭️ **Fase 8 — QA e Homologação** |
+| **Versão** | `v0.7.0` |
+| **Fase** | ✅ Fase 8 — homologação aprovada · ⏭️ **Fase 9 — MVP Release `v1.0.0`** |
 | **Última decisão** | Comandos `/guardian-*` executados pelo próprio hook (D42) |
-| **Próxima ação** | QA paralelo + roteiro de homologação no Claude Code real |
+| **Próxima ação** | Fechar a Definition of MVP Done e lançar `v1.0.0` |
 
 Detalhes: [[PROJECT_STATUS]].
 

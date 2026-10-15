@@ -105,6 +105,15 @@ describe('hook.mjs — contrato com o Claude Code', () => {
     expect(r).toEqual({ codigo: 0, saida: { systemMessage: MENSAGENS.servidorOffline } });
   });
 
+  it('servidor recusa a avaliação: libera com o motivo real, não como offline', async () => {
+    const { url } = await ativo();
+    const r = await executarHook('a '.repeat(600_000), url);
+    expect(r.codigo).toBe(0);
+    expect(r.saida!.systemMessage).toBe(
+      '⚠️ guardIAn: erro ao avaliar (HTTP 400): prompt não avaliado',
+    );
+  });
+
   it('entrada ilegível: libera sem travar', async () => {
     const filho = spawn(process.execPath, [HOOK]);
     filho.stdin.end('não é json');

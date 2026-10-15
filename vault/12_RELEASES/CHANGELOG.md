@@ -4,6 +4,15 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
 
+## [0.8.0] — QA e Homologação
+### Adicionado
+- Relatório de QA e security review; roteiro de homologação com comandos prontos.
+- Homologação do MVP aprovada pelo engenheiro.
+### Corrigido
+- Servidor recusa `GUARDIAN_HOST` fora de loopback (segurança).
+- Hook mostra o erro real quando o servidor recusa a avaliação, em vez de "offline".
+- UI mostra a data em prompts de dias anteriores.
+
 ## [0.7.0] — UI
 ### Adicionado
 - UI web (React + Vite + Tailwind) em `http://127.0.0.1:7070`: abas por projeto e Playground, colunas Todos × Liberados, marcadores, 4 barras por critério, override com contador de 60s, banner de JEV indisponível, tempo real via SSE.

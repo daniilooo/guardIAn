@@ -3,7 +3,7 @@ import { MENSAGENS } from '@guardian/shared';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { prompt } from '../teste-fixtures.ts';
-import { CartaoPrompt } from './CartaoPrompt.tsx';
+import { CartaoPrompt, momento } from './CartaoPrompt.tsx';
 import { ModalOverride } from './ModalOverride.tsx';
 
 afterEach(cleanup);
@@ -85,5 +85,15 @@ describe('ModalOverride (R6)', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(acoes.onFechar).toHaveBeenCalledOnce();
     expect(acoes.onEnviar).not.toHaveBeenCalled();
+  });
+});
+
+describe('momento', () => {
+  const agora = new Date('2026-10-15T15:00:00');
+  it('só a hora para hoje', () => {
+    expect(momento(new Date('2026-10-15T09:05:07').toISOString(), agora)).toBe('09:05:07');
+  });
+  it('data + hora para outros dias', () => {
+    expect(momento(new Date('2026-10-13T09:05:07').toISOString(), agora)).toBe('13/10 09:05:07');
   });
 });
