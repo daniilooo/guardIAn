@@ -1,7 +1,0 @@
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      { "hooks": [ { "type": "command", "command": "node ${CLAUDE_PLUGIN_ROOT}/hook.mjs", "timeout": 75 } ] }
-    ]
-  }
-}

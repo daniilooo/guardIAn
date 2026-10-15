@@ -1,6 +1,6 @@
 # Conhecimento — Hooks e plugins do Claude Code
 
-> Validado empiricamente no **Spike da Fase 2** (2026-10-12, Claude Code 2.1.296, `claude -p` + `--plugin-dir`). Código: `scripts/spike/`.
+> Validado empiricamente no **Spike da Fase 2** (2026-10-12, Claude Code 2.1.296, `claude -p` + `--plugin-dir`). Código do spike: tag `v0.2.0`, pasta `scripts/spike/` (removida da árvore na `v1.0.0`; a implementação final está em `plugins/claude-code/`).
 
 ## `UserPromptSubmit` — resultados
 | # | Pergunta | Resultado | Evidência |

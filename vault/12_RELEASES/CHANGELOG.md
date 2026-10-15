@@ -4,6 +4,27 @@ Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
 
+## [1.0.0] — MVP
+Primeira versão completa e homologada do guardIAn.
+
+### Destaques
+- Portão pré-LLM para o Claude Code: plugin `guardian` com hook `UserPromptSubmit` e comandos `/guardian-active` / `/guardian-inactive`.
+- Avaliação pelo JEV em 4 critérios, com faixas 🔴 < 50% · 🟡 50–74% · 🟢 ≥ 75%; bloqueio local de prompts curtos e de segredos (mascarados).
+- Retenção de 60s com override pela UI; Esc no terminal cancela na hora.
+- UI local com abas por projeto, colunas Todos × Liberados, barras por critério, Playground e tempo real.
+- Fail-open com aviso quando o JEV ou o servidor estão indisponíveis.
+- 191 testes, CI com varredura de segredos, homologação aprovada.
+
+### Alterado
+- Versão do plugin e do projeto: `1.0.0`.
+- README reescrito para a v1.0.0.
+
+### Removido
+- Spike descartável da Fase 2 (`scripts/spike/`), preservado na tag `v0.2.0`.
+
+### Corrigido
+- Registro da homologação: o plugin homologado veio do marketplace.
+
 ## [0.8.0] — QA e Homologação
 ### Adicionado
 - Relatório de QA e security review; roteiro de homologação com comandos prontos.
