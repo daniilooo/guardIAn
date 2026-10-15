@@ -26,13 +26,13 @@ UI local em `http://127.0.0.1:7070`: abas por projeto, coluna com **todos** os p
 
 ## Como executar
 
-> Servidor (`pnpm start`) e plugin do Claude Code já funcionam. A UI chega na Fase 7; até lá, o override é feito pela API.
+> Servidor, UI e plugin do Claude Code funcionando. Próximo passo: QA e homologação (Fase 8).
 
 ```bash
 corepack enable          # habilita o pnpm (Node ≥ 22.18); sem sudo: corepack enable --install-directory ~/.local/bin
 pnpm install             # instala dependências e os hooks git (lefthook)
 cp .env.example .env     # preencha TYPESAFE_API_KEY
-pnpm start               # http://127.0.0.1:7070
+pnpm start               # compila a UI e sobe em http://127.0.0.1:7070
 ```
 
 No Claude Code, dentro do projeto que deseja filtrar:

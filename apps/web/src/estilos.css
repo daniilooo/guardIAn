@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+/* Tokens (paleta de referência da skill de visualização):
+   superfícies e textos neutros; status reservados com ícone + rótulo; barras em um único azul. */
+:root {
+  --fundo: #f4f4f2;
+  --superficie: #fcfcfb;
+  --superficie-2: #f0efec;
+  --borda: rgba(11, 11, 11, 0.1);
+  --trilho: #e1e0d9;
+  --texto: #0b0b0b;
+  --texto-2: #52514e;
+  --texto-3: #6f6e69;
+  --barra: #2a78d6;
+  --limiar: #52514e;
+  --vermelho: #d03b3b;
+  --amarelo: #fab219;
+  --verde: #0ca30c;
+  --azul: #2a78d6;
+  --cinza: #8a8984;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #121211;
+    --superficie: #1a1a19;
+    --superficie-2: #232321;
+    --borda: rgba(255, 255, 255, 0.1);
+    --trilho: #2c2c2a;
+    --texto: #f0efec;
+    --texto-2: #c3c2b7;
+    --texto-3: #9a998f;
+    --barra: #3987e5;
+    --limiar: #c3c2b7;
+    --azul: #3987e5;
+    --cinza: #8a8984;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-borda: var(--borda);
+  --color-trilho: var(--trilho);
+  --color-texto: var(--texto);
+  --color-texto-2: var(--texto-2);
+  --color-texto-3: var(--texto-3);
+  --color-barra: var(--barra);
+  --color-limiar: var(--limiar);
+  --color-vermelho: var(--vermelho);
+  --color-amarelo: var(--amarelo);
+  --color-verde: var(--verde);
+  --color-azul: var(--azul);
+  --color-cinza: var(--cinza);
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}

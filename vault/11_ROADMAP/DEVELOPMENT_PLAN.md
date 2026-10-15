@@ -11,7 +11,7 @@
 | 4 | Núcleo de avaliação | ✅ Concluído | v0.4.0 |
 | 5 | Servidor e persistência | ✅ Concluído | v0.5.0 |
 | 6 | Plugin Claude Code | ✅ Concluído | v0.6.0 |
-| 7 | UI | ⬜ Não iniciado | v0.7.0 |
+| 7 | UI | ✅ Concluído | v0.7.0 |
 | 8 | QA e Homologação | ⬜ Não iniciado | v0.8.0 |
 | 9 | MVP Release | ⬜ Não iniciado | **v1.0.0** |
 
@@ -107,13 +107,17 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 - **Dependências:** Fase 5.
 - **DoD:** fluxo J2/J3/J4 funciona no Claude Code real (sem UI, override via `curl`).
 
-## FASE 7 — UI
+## FASE 7 — UI ✅
 - **Objetivo:** observabilidade e override.
 - **Escopo:** abas de projetos + Playground, colunas Todos × Liberados, cards com marcador e 4 barras, modal de override com aviso, banner JEV indisponível, SSE com reconexão, servida pelo Fastify.
 - **Entregáveis:**
-  - [ ] Todos os marcadores com cor + texto
-  - [ ] Override/cancelar dentro da janela de 60s (contador visível)
-  - [ ] Playground nunca libera
+  - [x] Todos os marcadores com cor + ícone + texto (paleta de status reservada)
+  - [x] Override/cancelar dentro da janela de 60s (contador visível; botão some ao expirar)
+  - [x] Playground nunca libera
+  - [x] 4 barras por critério com marca do limiar de 50% e tooltip
+  - [x] Tempo real via SSE com reconexão; banner de JEV indisponível
+  - [x] UI servida pelo próprio servidor (`pnpm start`), modo claro/escuro e mobile verificados por screenshot
+  - [x] Jornadas J1–J6 navegáveis
 - **Dependências:** Fase 5 (pode correr em paralelo à 6).
 - **DoD:** jornadas J1–J6 navegáveis.
 

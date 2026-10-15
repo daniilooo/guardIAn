@@ -2,6 +2,7 @@ import { ORIGEM, type EventoSse } from '@guardian/shared';
 import Fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import type { Eventos } from '../aplicacao/eventos.ts';
 import type { Servico } from '../aplicacao/servico.ts';
+import { servirUi } from './estaticos.ts';
 
 export interface DependenciasApp {
   servico: Servico;
@@ -11,6 +12,8 @@ export interface DependenciasApp {
   logger?: FastifyServerOptions['logger'];
   /** Intervalo do heartbeat do SSE. */
   heartbeatMs?: number;
+  /** Pasta da UI compilada (apps/web/dist). Sem ela, só a API é servida. */
+  pastaWeb?: string;
 }
 
 const MAX_PROMPT = 1_000_000;
@@ -198,6 +201,8 @@ export function criarApp(deps: DependenciasApp): FastifyInstance {
       cancelar();
     });
   });
+
+  if (deps.pastaWeb) servirUi(app, deps.pastaWeb);
 
   return app;
 }

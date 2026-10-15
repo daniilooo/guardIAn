@@ -4,25 +4,25 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 6 — Plugin Claude Code** (não iniciada) |
-| Etapa atual | Fase 5 concluída; PR para develop |
-| Branch atual | `feature/5-servidor-persistencia` |
-| Última entrega | Fase 5 — servidor e persistência |
-| Última decisão | D51–D58 |
+| Fase atual | **FASE 8 — QA e Homologação** (não iniciada) |
+| Etapa atual | Fases 6 e 7 concluídas; branches empilhadas aguardando push/PR |
+| Branch atual | `feature/7-ui` (sobre `feature/6-plugin-claude-code`) |
+| Última entrega | Fases 6 (plugin) e 7 (UI) |
+| Última decisão | D59–D67 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | PR da Fase 5 → `v0.5.0` → Fase 6 (plugin) / Fase 7 (UI) |
-| Testes atuais | 138 testes verdes (`pnpm test`) |
-| Release atual | `v0.4.0` |
+| Próxima ação | PR Fase 6 → develop; PR Fase 7 → develop (após o 6); releases; Fase 8 |
+| Testes atuais | 179 testes verdes (`pnpm test`) |
+| Release atual | `v0.5.0` |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
 - **Data/ferramenta:** 2026-10-13 — Claude Code (Opus)
-- **Contexto:** Fase 5 — servidor e persistência.
-- **Estado:** `apps/server` completo para o MVP: `config.ts`, `main.ts` (composição; `pnpm start`), `infra/db` (schema, conexão com migrations, repositórios), `aplicacao/servico.ts` (casos de uso), `aplicacao/retencao.ts` (60s + I12), `aplicacao/eventos.ts` (SSE), `http/app.ts` (rotas + Host/Origin). 138 testes; ponta a ponta com curl OK.
-- **Alterações:** `apps/server/**`, `packages/shared` (BLOQUEADO, `message`/`can_override`/`jev_failure`, `allow.message`), docs (DATA_MODEL e API_CONTRACTS congelados, decisões D51–D58, segurança, runbook, CHANGELOG 0.5.0).
-- **Decisões:** D51–D58.
-- **Pendências:** push/PR (G8), merge e `v0.5.0` (humano).
-- **Próximo passo:** Fase 6 — `plugins/claude-code`: `.claude-plugin/plugin.json`, `hooks/hooks.json` (timeout 75), `hook.mjs` sem dependências (POST `/api/hook/prompt`; `hold` → long-poll com prazo interno de 68s, I11; `allow.message` → `systemMessage`; offline → `systemMessage` de R17), `commands/guardian-active.md` e `guardian-inactive.md` (só descrição/autocomplete), `marketplace.json` na raiz. Referência: `scripts/spike/plugin/hook.mjs`.
-- **Arquivos relevantes:** `vault/03_ARCHITECTURE/API_CONTRACTS.md`, `vault/15_KNOWLEDGE/CLAUDE_CODE_HOOKS.md`, `packages/shared/src/constantes.ts`.
+- **Contexto:** Fases 6 (plugin) e 7 (UI), em branches empilhadas para evitar conflito nos documentos do roadmap.
+- **Estado:** `feature/6-plugin-claude-code` (plugin `guardian`: `hook.mjs`, comandos, marketplace; testes em `tests/`; validado no Claude Code real) e `feature/7-ui` sobre ela (`apps/web` React/Vite/Tailwind; servidor serve `apps/web/dist`; screenshots claro/escuro/mobile conferidos). 179 testes.
+- **Alterações:** `plugins/claude-code/**`, `.claude-plugin/marketplace.json`, `tests/`, `apps/web/**`, `apps/server/src/http/estaticos.ts`, scripts `start`/`dev`/`dev:web`, docs (D59–D67, S15/RK12, CHANGELOG 0.6.0/0.7.0).
+- **Decisões:** D59–D67.
+- **Pendências:** push e PRs (G8): Fase 6 → develop; Fase 7 → develop depois do merge da 6. Releases `v0.6.0`/`v0.7.0` (humano). Decisão aberta: desligar "branch atualizada" no ruleset da main.
+- **Próximo passo:** Fase 8 — QA paralelo (regras, API, hook, UI, segurança), security-review, execução do `HOMOLOGATION_SCRIPT.md` pelo engenheiro com JEV real, calibração fina da rubrica.
+- **Arquivos relevantes:** `vault/08_TESTING/HOMOLOGATION_SCRIPT.md`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-8`, `plugins/claude-code/README.md`.
