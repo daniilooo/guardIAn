@@ -1,0 +1,12 @@
+{
+  "name": "guardian",
+  "owner": { "name": "Danilo Franco" },
+  "description": "Marketplace do guardIAn — portão de qualidade para prompts.",
+  "plugins": [
+    {
+      "name": "guardian",
+      "source": "./plugins/claude-code",
+      "description": "Avalia cada prompt com o JEV antes da LLM e barra os que não atendem aos critérios."
+    }
+  ]
+}

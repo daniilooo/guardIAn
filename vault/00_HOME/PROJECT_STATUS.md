@@ -4,16 +4,16 @@ _Atualizado em: 2026-10-13_
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 6 — Plugin Claude Code** (Não iniciado) |
-| Etapa atual | Fase 5 concluída — PR para `develop` |
-| Branch atual | `feature/5-servidor-persistencia` |
-| Última entrega | FASE 5 — Servidor e persistência |
-| Última decisão | D51–D58 (modelo de dados, comandos no servidor, segurança local) |
+| Fase atual | **FASE 8 — QA e Homologação** (Não iniciado) |
+| Etapa atual | Fases 6 e 7 concluídas — PRs para `develop` |
+| Branch atual | `feature/6-plugin-claude-code` → `feature/7-ui` |
+| Última entrega | FASE 6 (plugin) e FASE 7 (UI) |
+| Última decisão | D63–D67 (UI servida pelo servidor, abas por link, visualização) |
 | Tarefas em andamento | — |
 | Bloqueios | — |
-| Próxima ação | Merge do PR → release `v0.5.0` → Fases 6 (plugin) e 7 (UI), que podem correr em paralelo |
-| Testes atuais | 138 testes verdes |
-| Release atual | `v0.4.0` |
+| Próxima ação | Merge dos PRs das Fases 6 e 7 → releases → Fase 8 (QA + roteiro de homologação) |
+| Testes atuais | 179 testes verdes |
+| Release atual | `v0.5.0` |
 
 ## Progresso por fase
 | Fase | Status |
@@ -24,8 +24,8 @@ _Atualizado em: 2026-10-13_
 | 3 — Fundação técnica | ✅ Concluído |
 | 4 — Núcleo de avaliação | ✅ Concluído |
 | 5 — Servidor e persistência | ✅ Concluído |
-| 6 — Plugin Claude Code | ⬜ Não iniciado |
-| 7 — UI | ⬜ Não iniciado |
+| 6 — Plugin Claude Code | ✅ Concluído |
+| 7 — UI | ✅ Concluído |
 | 8 — QA e Homologação | ⬜ Não iniciado |
 | 9 — MVP Release `v1.0.0` | ⬜ Não iniciado |
 

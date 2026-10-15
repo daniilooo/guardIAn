@@ -18,6 +18,7 @@
 | S11 | Espera de 60s na TUI interativa | ✅ prompt retido até o fim e descartado com a mensagem do hook | Teste manual 1 |
 | S12 | **Esc** durante a retenção | ✅ o CLI mata o hook e **descarta** o prompt (nada vai à LLM). ⚠️ O servidor **não percebe** e mantém a retenção aberta até expirar | Teste manual 2 + logs |
 | S13 | Autocomplete da TUI | Insere a forma com namespace (`/guardian-spike:guardian-active`) → o hook precisa reconhecer as duas formas | Teste manual 3 |
+| S15 | O CLI grava o prompt barrado no histórico local da sessão (`~/.claude/projects/...`) e o repete na mensagem "Original prompt" | ⚠️ Fora do controle do guardIAn: um segredo barrado não vai à LLM, mas fica no arquivo de sessão local do CLI (RK12) | Fase 6 (e2e) |
 | S14 | Campos de entrada variam por versão/modo | No modo interativo apareceu também `scratchpad_dir` → o hook deve ler só os campos que usa e ignorar o resto | Teste manual |
 
 ## Consequências para o design
