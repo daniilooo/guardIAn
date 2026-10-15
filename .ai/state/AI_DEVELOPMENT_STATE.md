@@ -4,25 +4,23 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 9 — MVP Release** (não iniciada) |
-| Etapa atual | Homologação aprovada; PR da Fase 8 |
-| Branch atual | `feature/8-qa-homologacao` |
-| Última entrega | Fases 6 (plugin) e 7 (UI) |
+| Fase atual | **MVP concluído** (Fases 0–9) |
+| Etapa atual | Release `v1.0.0` em PR |
+| Branch atual | `feature/9-mvp-release` |
+| Última entrega | Fase 9 — MVP Release |
 | Última decisão | D68–D69 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | Merge → `v0.8.0` → Fase 9 (`v1.0.0`) |
+| Próxima ação | Merge + tag `v1.0.0`; depois feedback de uso e pós-MVP |
 | Testes atuais | 191 testes verdes (`pnpm test`) |
-| Release atual | `v0.7.0` |
+| Release atual | `v0.8.0` (próxima: `v1.0.0`) |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
 - **Data/ferramenta:** 2026-10-15 — Claude Code (Opus)
-- **Contexto:** Fase 8 — QA e homologação.
-- **Estado:** QA automatizado e security review feitos (relatório em `vault/08_TESTING/QA_REPORT_FASE8.md`). Correções F1 (loopback imposto), F2 (erro HTTP no hook), F3 (data na UI). 191 testes. Roteiro de homologação reescrito com comandos prontos.
-- **Alterações:** `apps/server/src/config.ts` (+ teste), `plugins/claude-code/hook.mjs`, `apps/web/src/componentes/CartaoPrompt.tsx`, testes, docs (QA report, roteiro, TD3, D68–D69, CHANGELOG).
-- **Decisões:** D68, D69.
-- **Pendências:** merge do PR da Fase 8 e release `v0.8.0` (humano). Homologação aprovada pelo engenheiro em 2026-10-15 (`HOMOLOGATION_RESULT.md`).
-- **Próximo passo:** após a homologação aprovada, Fase 9 — release `v1.0.0`.
-- **Arquivos relevantes:** `vault/08_TESTING/HOMOLOGATION_SCRIPT.md`, `vault/08_TESTING/QA_REPORT_FASE8.md`.
+- **Contexto:** Fase 9 — release do MVP `v1.0.0`.
+- **Estado:** Definition of MVP Done 12/12 com evidência; README final; CHANGELOG 1.0.0; versão 1.0.0 no `package.json` raiz e no `plugin.json`; spike removido (tag `v0.2.0`); registro da homologação corrigido (plugin veio do marketplace).
+- **Pendências:** push/PR → develop → main e tag `v1.0.0` (humano). Sugestões em aberto: ignorar `vault/.obsidian/graph.json`; desligar "branch atualizada" no ruleset da `main`.
+- **Próximo passo (pós-MVP):** uso real, coleta de prompts mal avaliados, priorização do `vault/11_ROADMAP/POST_MVP_BACKLOG.md` via intake (`.ai/workflow/INTAKE.md`). Candidatos: suporte ao Codex, sugestão de reescrita do prompt, métricas de economia, contexto de sessão para mensagens curtas (RK4).
+- **Arquivos relevantes:** `README.md`, `vault/01_PRODUCT/MVP_SCOPE.md`, `vault/11_ROADMAP/POST_MVP_BACKLOG.md`, `vault/12_RELEASES/CHANGELOG.md`.

@@ -1,8 +1,10 @@
 {
   "name": "guardian",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Portão de qualidade para prompts: o guardIAn avalia cada prompt com o JEV antes de ele chegar à LLM e barra os que não atendem aos critérios.",
-  "author": { "name": "Danilo Franco" },
+  "author": {
+    "name": "Danilo Franco"
+  },
   "repository": "https://github.com/daniilooo/guardIAn",
   "license": "UNLICENSED",
   "keywords": ["prompt", "guardrails", "qualidade", "jev"]

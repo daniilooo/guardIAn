@@ -13,7 +13,7 @@
 | 6 | Plugin Claude Code | ✅ Concluído | v0.6.0 |
 | 7 | UI | ✅ Concluído | v0.7.0 |
 | 8 | QA e Homologação | ✅ Concluído | v0.8.0 |
-| 9 | MVP Release | ⬜ Não iniciado | **v1.0.0** |
+| 9 | MVP Release | ✅ Concluído | **v1.0.0** |
 
 ```mermaid
 flowchart LR
@@ -133,7 +133,17 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
   - [x] Ajuste fino da rubrica: não necessário
 - **DoD:** roteiro 16/16 (inclui 6b) aprovado; nenhum achado crítico aberto.
 
-## FASE 9 — MVP Release
+## FASE 9 — MVP Release ✅
 - **Objetivo:** publicar `v1.0.0`.
 - **Entregáveis:** CHANGELOG, README final, tag `v1.0.0` em `main` (humano), status atualizado.
+- **Checklist:**
+  - [x] Definition of MVP Done 12/12 com evidência ([[MVP_SCOPE]])
+  - [x] README final, CHANGELOG 1.0.0, versão 1.0.0 no projeto e no plugin
+  - [x] Spike descartável removido (preservado na tag `v0.2.0`)
+  - [ ] Tag `v1.0.0` em `main` (humano)
 - **DoD:** Definition of MVP Done 100% marcada.
+
+---
+
+## Depois do MVP
+Seguindo a filosofia **IDEA → MVP → HOMOLOGAÇÃO → FEEDBACK → POLISH**: usar o guardIAn no dia a dia, anotar prompts mal avaliados e priorizar o [[POST_MVP_BACKLOG]] com base nesse feedback. Cada nova frente passa pelo intake (`.ai/workflow/INTAKE.md`).
