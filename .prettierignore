@@ -4,7 +4,6 @@ vault/
 docs/
 .ai/
 .claude/
-scripts/spike/
 coverage/
 dist/
 apps/server/drizzle/

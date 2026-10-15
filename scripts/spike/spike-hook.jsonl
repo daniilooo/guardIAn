@@ -1,0 +1,5 @@
+{"t":"2026-10-13T02:56:01.508Z","ms":6,"evento":"entrada","prompt":"teste #segurar diga oi","chaves":["session_id","transcript_path","cwd","scratchpad_dir","prompt_id","permission_mode","hook_event_name","prompt"]}
+{"t":"2026-10-13T02:57:01.597Z","ms":60094,"evento":"saida","saida":{"decision":"block","reason":"🛡️ guardIAn: Expirou (60s) — prompt descartado."}}
+{"t":"2026-10-13T02:58:01.410Z","ms":5,"evento":"entrada","prompt":"teste #segurar diga tchau","chaves":["session_id","transcript_path","cwd","scratchpad_dir","prompt_id","permission_mode","hook_event_name","prompt"]}
+{"t":"2026-10-13T02:58:24.196Z","ms":5,"evento":"entrada","prompt":"/guardian-spike:guardian-active","chaves":["session_id","transcript_path","cwd","scratchpad_dir","prompt_id","permission_mode","hook_event_name","prompt"]}
+{"t":"2026-10-13T02:58:24.247Z","ms":56,"evento":"saida","saida":{"decision":"block","reason":"🛡️ guardIAn: ✅ comando /guardian-spike:guardian-active tratado pelo hook (sem LLM)."}}

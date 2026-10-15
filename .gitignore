@@ -33,8 +33,6 @@ vault/.trash/
 !.vscode/extensions.json
 .DS_Store
 
-# Spike (Fase 2)
-scripts/spike/*.jsonl
 
 # Token Saver local logs and settings
 /.token-saver/
