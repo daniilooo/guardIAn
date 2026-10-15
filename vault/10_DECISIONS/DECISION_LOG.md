@@ -79,6 +79,8 @@ Decisões do intake (2026-10-12). Decisões estruturais têm ADR. Formato: `D<n>
 | D64 | Aba selecionável pelo link (`#<id>`) e lembrada no navegador | Claude (Fase 7) |
 | D65 | Cartões com barras não repetem a mensagem "Nota X% — …" | Claude (Fase 7) |
 | D66 | `pnpm start` compila a UI antes de subir; `pnpm dev` + `pnpm dev:web` para desenvolvimento (proxy do Vite remove o `Origin`) | Claude (Fase 7) |
+| D68 | Servidor recusa subir fora de loopback (F1 do QA) | Claude (Fase 8) |
+| D69 | Hook distingue servidor offline de erro HTTP na avaliação (F2 do QA) | Claude (Fase 8) |
 | D67 | Barras de critério em série única (um tom de azul) + marca do limiar; status com a paleta reservada e sempre com ícone e rótulo | Claude (Fase 7, skill de visualização) |
 
 ## Hipóteses (confirmar ou derrubar)

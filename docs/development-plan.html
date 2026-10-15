@@ -82,7 +82,7 @@ code{background:var(--surface-2);padding:1px 5px;border-radius:5px;font-size:.85
 </div>
 
 <script>
-const UPDATED = "2026-10-13";
+const UPDATED = "2026-10-15";
 // status: todo | prog | block | val | done
 const PHASES = [
   {n:0,name:"Intake",status:"done",version:"—",goal:"Transformar a ideia em definição de MVP.",
@@ -117,9 +117,9 @@ const PHASES = [
     deliverables:["Abas + Playground","Colunas Todos × Liberados","Cards com marcador e 4 barras","Modal de override + banner JEV"],
     checklist:[["Marcadores com cor + texto",1],["Override com contador de 60s",1],["Playground nunca libera",1],["Jornadas J1–J6",1]],
     deps:["Fase 5 (paralela à 6)"],blockers:[]},
-  {n:8,name:"QA e Homologação",status:"todo",version:"v0.8.0",goal:"Validar contra a Definition of MVP Done.",
+  {n:8,name:"QA e Homologação",status:"done",version:"v0.8.0",goal:"Validar contra a Definition of MVP Done.",
     deliverables:["QA paralelo","Security review","Roteiro de homologação 15/15"],
-    checklist:[["QA regras/API/hook/UI/segurança",0],["Sem achados críticos",0],["Roteiro aprovado pelo engenheiro",0]],
+    checklist:[["QA regras/API/hook/UI/segurança",1],["Sem achados críticos",1],["Roteiro aprovado pelo engenheiro",1]],
     deps:["Fases 6 e 7"],blockers:[]},
   {n:9,name:"MVP Release",status:"todo",version:"v1.0.0",goal:"Publicar v1.0.0.",
     deliverables:["CHANGELOG","README final","Tag v1.0.0 em main (humano)"],

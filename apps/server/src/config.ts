@@ -17,9 +17,18 @@ function numero(valor: string | undefined, padrao: number): number {
   return valor && Number.isFinite(n) && n > 0 ? n : padrao;
 }
 
+/** ADR-0006 — sem autenticação, o servidor só pode escutar em loopback. */
+export const HOSTS_LOOPBACK = ['127.0.0.1', 'localhost', '::1'];
+
 export function lerConfig(env: NodeJS.ProcessEnv = process.env): Config {
+  const host = env.GUARDIAN_HOST || HOST_PADRAO;
+  if (!HOSTS_LOOPBACK.includes(host)) {
+    throw new Error(
+      `GUARDIAN_HOST="${host}" recusado: o guardIAn não tem autenticação e só pode escutar em ${HOSTS_LOOPBACK.join(', ')}.`,
+    );
+  }
   return {
-    host: env.GUARDIAN_HOST || HOST_PADRAO,
+    host,
     porta: numero(env.GUARDIAN_PORT, PORTA_PADRAO),
     caminhoBanco: env.GUARDIAN_DB_PATH || './data/guardian.db',
     typesafeApiKey: env.TYPESAFE_API_KEY || undefined,

@@ -19,12 +19,17 @@ function useAgora(ativo: boolean) {
   return agora;
 }
 
-const hora = (iso: string) =>
-  new Date(iso).toLocaleTimeString('pt-BR', {
+/** Hora; prompts de outros dias mostram também a data. */
+export function momento(iso: string, agora = new Date()): string {
+  const d = new Date(iso);
+  const hora = d.toLocaleTimeString('pt-BR', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
   });
+  if (d.toDateString() === agora.toDateString()) return hora;
+  return `${d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} ${hora}`;
+}
 
 export function CartaoPrompt({ prompt, onAprovar }: Props) {
   const retido = prompt.final_decision === 'RETIDO';
@@ -45,7 +50,9 @@ export function CartaoPrompt({ prompt, onAprovar }: Props) {
             {Math.round(prompt.score_total)}%
           </span>
         )}
-        <span className="ml-auto text-xs tabular-nums text-texto-3">{hora(prompt.created_at)}</span>
+        <span className="ml-auto text-xs tabular-nums text-texto-3">
+          {momento(prompt.created_at)}
+        </span>
       </header>
 
       <p
