@@ -4,25 +4,25 @@
 
 | Campo | Valor |
 |---|---|
-| Fase atual | **FASE 8 — QA e Homologação** (não iniciada) |
-| Etapa atual | Fases 6 e 7 concluídas; branches empilhadas aguardando push/PR |
-| Branch atual | `feature/7-ui` (sobre `feature/6-plugin-claude-code`) |
+| Fase atual | **FASE 8 — QA e Homologação** (em andamento) |
+| Etapa atual | QA concluído; aguardando homologação do engenheiro |
+| Branch atual | `feature/8-qa-homologacao` |
 | Última entrega | Fases 6 (plugin) e 7 (UI) |
-| Última decisão | D59–D67 |
+| Última decisão | D68–D69 |
 | Tarefas em andamento | nenhuma |
 | Bloqueios | nenhum |
-| Próxima ação | PR Fase 6 → develop; PR Fase 7 → develop (após o 6); releases; Fase 8 |
-| Testes atuais | 179 testes verdes (`pnpm test`) |
-| Release atual | `v0.5.0` |
+| Próxima ação | PR das correções → main; engenheiro executa a homologação |
+| Testes atuais | 191 testes verdes (`pnpm test`) |
+| Release atual | `v0.7.0` |
 | Remoto | `origin = git@github.com:daniilooo/guardIAn.git` — `main` e `develop` publicados |
 
 ## HANDOFF
 
-- **Data/ferramenta:** 2026-10-13 — Claude Code (Opus)
-- **Contexto:** Fases 6 (plugin) e 7 (UI), em branches empilhadas para evitar conflito nos documentos do roadmap.
-- **Estado:** `feature/6-plugin-claude-code` (plugin `guardian`: `hook.mjs`, comandos, marketplace; testes em `tests/`; validado no Claude Code real) e `feature/7-ui` sobre ela (`apps/web` React/Vite/Tailwind; servidor serve `apps/web/dist`; screenshots claro/escuro/mobile conferidos). 179 testes.
-- **Alterações:** `plugins/claude-code/**`, `.claude-plugin/marketplace.json`, `tests/`, `apps/web/**`, `apps/server/src/http/estaticos.ts`, scripts `start`/`dev`/`dev:web`, docs (D59–D67, S15/RK12, CHANGELOG 0.6.0/0.7.0).
-- **Decisões:** D59–D67.
-- **Pendências:** push e PRs (G8): Fase 6 → develop; Fase 7 → develop depois do merge da 6. Releases `v0.6.0`/`v0.7.0` (humano). Decisão aberta: desligar "branch atualizada" no ruleset da main.
-- **Próximo passo:** Fase 8 — QA paralelo (regras, API, hook, UI, segurança), security-review, execução do `HOMOLOGATION_SCRIPT.md` pelo engenheiro com JEV real, calibração fina da rubrica.
-- **Arquivos relevantes:** `vault/08_TESTING/HOMOLOGATION_SCRIPT.md`, `vault/11_ROADMAP/DEVELOPMENT_PLAN.md#fase-8`, `plugins/claude-code/README.md`.
+- **Data/ferramenta:** 2026-10-15 — Claude Code (Opus)
+- **Contexto:** Fase 8 — QA e homologação.
+- **Estado:** QA automatizado e security review feitos (relatório em `vault/08_TESTING/QA_REPORT_FASE8.md`). Correções F1 (loopback imposto), F2 (erro HTTP no hook), F3 (data na UI). 191 testes. Roteiro de homologação reescrito com comandos prontos.
+- **Alterações:** `apps/server/src/config.ts` (+ teste), `plugins/claude-code/hook.mjs`, `apps/web/src/componentes/CartaoPrompt.tsx`, testes, docs (QA report, roteiro, TD3, D68–D69, CHANGELOG).
+- **Decisões:** D68, D69.
+- **Pendências:** push/PR (G8); merge → main; engenheiro executa `HOMOLOGATION_SCRIPT.md` com JEV real e registra em `vault/08_TESTING/HOMOLOGATION_RESULT.md`; ajuste da rubrica se necessário (G3).
+- **Próximo passo:** após a homologação aprovada, Fase 9 — release `v1.0.0`.
+- **Arquivos relevantes:** `vault/08_TESTING/HOMOLOGATION_SCRIPT.md`, `vault/08_TESTING/QA_REPORT_FASE8.md`.

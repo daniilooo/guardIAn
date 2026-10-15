@@ -12,7 +12,7 @@
 | 5 | Servidor e persistência | ✅ Concluído | v0.5.0 |
 | 6 | Plugin Claude Code | ✅ Concluído | v0.6.0 |
 | 7 | UI | ✅ Concluído | v0.7.0 |
-| 8 | QA e Homologação | ⬜ Não iniciado | v0.8.0 |
+| 8 | QA e Homologação | 🔄 Em andamento | v0.8.0 |
 | 9 | MVP Release | ⬜ Não iniciado | **v1.0.0** |
 
 ```mermaid
@@ -124,7 +124,14 @@ Fases 6 e 7 podem correr em paralelo depois da 5 (contrato da API definido).
 ## FASE 8 — QA e Homologação
 - **Objetivo:** validar o MVP contra a Definition of MVP Done.
 - **Escopo:** QA paralelo (regras, API, hook, UI, segurança), security-review, execução do [[HOMOLOGATION_SCRIPT]] pelo engenheiro, ajuste fino da rubrica.
-- **DoD:** roteiro 15/15 aprovado; nenhum achado crítico aberto.
+- **Entregáveis:**
+  - [x] QA automatizado por área (191 testes) — [[QA_REPORT_FASE8]]
+  - [x] Security review: 1 achado importante (F1) corrigido; nenhum crítico aberto
+  - [x] Correções F1–F3 com testes
+  - [x] Roteiro de homologação atualizado com comandos prontos
+  - [ ] Homologação executada pelo engenheiro (JEV real)
+  - [ ] Ajuste fino da rubrica, se necessário (G3)
+- **DoD:** roteiro 16/16 (inclui 6b) aprovado; nenhum achado crítico aberto.
 
 ## FASE 9 — MVP Release
 - **Objetivo:** publicar `v1.0.0`.

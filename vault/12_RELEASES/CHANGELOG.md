@@ -3,6 +3,10 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/) · SemVer.
 
 ## [Não lançado]
+### Corrigido
+- Servidor recusa `GUARDIAN_HOST` fora de loopback (segurança).
+- Hook mostra o erro real quando o servidor recusa a avaliação, em vez de "offline".
+- UI mostra a data em prompts de dias anteriores.
 
 ## [0.7.0] — UI
 ### Adicionado
